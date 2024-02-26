@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2024-02-26T19:39:07.997Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.0.2 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="NT_pTuA4D3UQdXhlTMTp" version="23.0.2" type="device">
+<mxfile host="Electron" modified="2024-02-26T19:59:58.674Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.0.2 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="DoNu_ChBNJnL8AJfqwu7" version="23.0.2" type="device">
   <diagram name="Page-1" id="VvhWam94fAn058fj7BaD">
     <mxGraphModel dx="4593" dy="2596" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -65,7 +65,7 @@
             <mxPoint x="-630" y="215" as="targetPoint" />
             <Array as="points">
               <mxPoint x="-640" y="485" />
-              <mxPoint x="-640" y="165" />
+              <mxPoint x="-640" y="35" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -177,7 +177,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="djq6IaJUHDn9vAA4K8EV-28" value="listings" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-520" y="90" width="480" height="340" as="geometry" />
+          <mxGeometry x="-520" y="-40" width="480" height="540" as="geometry" />
         </mxCell>
         <mxCell id="djq6IaJUHDn9vAA4K8EV-29" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" vertex="1" parent="djq6IaJUHDn9vAA4K8EV-28">
           <mxGeometry y="30" width="480" height="30" as="geometry" />
@@ -252,13 +252,78 @@
             <mxRectangle width="30" height="40" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="djq6IaJUHDn9vAA4K8EV-111" value="status BOOLEAN DEFAULT NULL&lt;br&gt;(null is when ad is in staging area = not posted, true is active, false is removed)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" vertex="1" parent="djq6IaJUHDn9vAA4K8EV-109">
+        <mxCell id="djq6IaJUHDn9vAA4K8EV-111" value="street_address TEXT NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" vertex="1" parent="djq6IaJUHDn9vAA4K8EV-109">
+          <mxGeometry x="30" width="450" height="40" as="geometry">
+            <mxRectangle width="450" height="40" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="djq6IaJUHDn9vAA4K8EV-287" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" vertex="1" parent="djq6IaJUHDn9vAA4K8EV-28">
+          <mxGeometry y="220" width="480" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="djq6IaJUHDn9vAA4K8EV-288" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" vertex="1" parent="djq6IaJUHDn9vAA4K8EV-287">
+          <mxGeometry width="30" height="40" as="geometry">
+            <mxRectangle width="30" height="40" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="djq6IaJUHDn9vAA4K8EV-289" value="city TEXT NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" vertex="1" parent="djq6IaJUHDn9vAA4K8EV-287">
+          <mxGeometry x="30" width="450" height="40" as="geometry">
+            <mxRectangle width="450" height="40" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="djq6IaJUHDn9vAA4K8EV-290" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" vertex="1" parent="djq6IaJUHDn9vAA4K8EV-28">
+          <mxGeometry y="260" width="480" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="djq6IaJUHDn9vAA4K8EV-291" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" vertex="1" parent="djq6IaJUHDn9vAA4K8EV-290">
+          <mxGeometry width="30" height="40" as="geometry">
+            <mxRectangle width="30" height="40" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="djq6IaJUHDn9vAA4K8EV-292" value="province TEXT NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" vertex="1" parent="djq6IaJUHDn9vAA4K8EV-290">
+          <mxGeometry x="30" width="450" height="40" as="geometry">
+            <mxRectangle width="450" height="40" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="djq6IaJUHDn9vAA4K8EV-293" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" vertex="1" parent="djq6IaJUHDn9vAA4K8EV-28">
+          <mxGeometry y="300" width="480" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="djq6IaJUHDn9vAA4K8EV-294" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" vertex="1" parent="djq6IaJUHDn9vAA4K8EV-293">
+          <mxGeometry width="30" height="40" as="geometry">
+            <mxRectangle width="30" height="40" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="djq6IaJUHDn9vAA4K8EV-295" value="country TEXT NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" vertex="1" parent="djq6IaJUHDn9vAA4K8EV-293">
+          <mxGeometry x="30" width="450" height="40" as="geometry">
+            <mxRectangle width="450" height="40" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="djq6IaJUHDn9vAA4K8EV-299" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" vertex="1" parent="djq6IaJUHDn9vAA4K8EV-28">
+          <mxGeometry y="340" width="480" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="djq6IaJUHDn9vAA4K8EV-300" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" vertex="1" parent="djq6IaJUHDn9vAA4K8EV-299">
+          <mxGeometry width="30" height="40" as="geometry">
+            <mxRectangle width="30" height="40" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="djq6IaJUHDn9vAA4K8EV-301" value="postal_code TEXT NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" vertex="1" parent="djq6IaJUHDn9vAA4K8EV-299">
+          <mxGeometry x="30" width="450" height="40" as="geometry">
+            <mxRectangle width="450" height="40" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="djq6IaJUHDn9vAA4K8EV-296" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" vertex="1" parent="djq6IaJUHDn9vAA4K8EV-28">
+          <mxGeometry y="380" width="480" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="djq6IaJUHDn9vAA4K8EV-297" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" vertex="1" parent="djq6IaJUHDn9vAA4K8EV-296">
+          <mxGeometry width="30" height="40" as="geometry">
+            <mxRectangle width="30" height="40" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="djq6IaJUHDn9vAA4K8EV-298" value="status BOOLEAN DEFAULT NULL&lt;br&gt;(null is when ad is in staging area = not posted, true is active, false is removed)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" vertex="1" parent="djq6IaJUHDn9vAA4K8EV-296">
           <mxGeometry x="30" width="450" height="40" as="geometry">
             <mxRectangle width="450" height="40" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
         <mxCell id="djq6IaJUHDn9vAA4K8EV-160" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" vertex="1" parent="djq6IaJUHDn9vAA4K8EV-28">
-          <mxGeometry y="220" width="480" height="60" as="geometry" />
+          <mxGeometry y="420" width="480" height="60" as="geometry" />
         </mxCell>
         <mxCell id="djq6IaJUHDn9vAA4K8EV-161" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" vertex="1" parent="djq6IaJUHDn9vAA4K8EV-160">
           <mxGeometry width="30" height="60" as="geometry">
@@ -271,7 +336,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="djq6IaJUHDn9vAA4K8EV-188" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" vertex="1" parent="djq6IaJUHDn9vAA4K8EV-28">
-          <mxGeometry y="280" width="480" height="60" as="geometry" />
+          <mxGeometry y="480" width="480" height="60" as="geometry" />
         </mxCell>
         <mxCell id="djq6IaJUHDn9vAA4K8EV-189" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" vertex="1" parent="djq6IaJUHDn9vAA4K8EV-188">
           <mxGeometry width="30" height="60" as="geometry">
@@ -351,7 +416,7 @@
             <mxRectangle width="450" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="djq6IaJUHDn9vAA4K8EV-54" value="&lt;h1 style=&quot;text-align: center;&quot;&gt;&lt;u&gt;User Stories&lt;/u&gt;&lt;/h1&gt;&lt;p&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;anyone can browse LISTINGS&lt;/li&gt;&lt;li&gt;anyone can search for filtered results (price min/max, category, etc.)&amp;nbsp;&lt;/li&gt;&lt;li&gt;USERS can login using their username or email address&lt;/li&gt;&lt;li&gt;USERS can create, edit, and delete their account (USERS entry)&lt;/li&gt;&lt;li&gt;USERS can create, edit, and delete their LISTINGS ( Can we set listing status to False for deleting? is that proper?)&lt;/li&gt;&lt;li&gt;USERS can send/receive and browse MESSAGES by replying to a specific LISTING or message in their inbox (MESSAGES entries)&lt;/li&gt;&lt;li&gt;USERS can add and remove (delete) LISTINGS to their FAVORITES (favorited_listings table)&lt;/li&gt;&lt;li&gt;USERS can review a LISTING before it is posted (ie. listings have staging area)&lt;/li&gt;&lt;li&gt;super-USERS can the same things as a regular-USER, but they can also delete LISTINGS from other USERS&lt;/li&gt;&lt;/ul&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;ul&gt;&lt;li&gt;**STRETCH** Users can post multiple ads by adding ads from the staging area to a cart (The cart is an incomplete ORDER, which is submitted with user payment.)&lt;/li&gt;&lt;li&gt;**STRETCH** Users can select which AD PRODUCT (pricing structure) to apply to their ad, which assigns a price to ORDER ITEMS + priority level to the LISTING&amp;nbsp;&lt;/li&gt;&lt;li&gt;**STRETCH** Users are sent receipts for their posted ads (ORDERS) via their email&lt;/li&gt;&lt;li&gt;**STRETCH** Super-users can create, edit, and delete AD PRODUCTS (pricing structures)&lt;/li&gt;&lt;/ul&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+        <mxCell id="djq6IaJUHDn9vAA4K8EV-54" value="&lt;h1 style=&quot;text-align: center;&quot;&gt;&lt;u&gt;User Stories&lt;/u&gt;&lt;/h1&gt;&lt;p&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;anyone can browse LISTINGS&lt;/li&gt;&lt;li&gt;anyone can search for filtered results (price min/max, category, etc.)&amp;nbsp;&lt;/li&gt;&lt;li&gt;USERS can login using their username or email address&lt;/li&gt;&lt;li&gt;USERS can create, edit, and delete their account (USERS entry)&lt;/li&gt;&lt;li&gt;USERS can create, edit, and delete their LISTINGS ( Can we set listing status to False for deleting? is that proper?)&lt;/li&gt;&lt;li&gt;USERS can send/receive and browse MESSAGES by replying to a specific LISTING or message in their inbox (MESSAGES entries)&lt;/li&gt;&lt;li&gt;USERS can browse, add, and remove (delete) LISTINGS to their FAVORITES (favorited_listings table)&lt;/li&gt;&lt;li&gt;USERS can review a LISTING before it is posted (ie. listings have staging area)&lt;/li&gt;&lt;li&gt;super-USERS can the same things as a regular-USER, but they can also delete LISTINGS from other USERS&lt;/li&gt;&lt;/ul&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;ul&gt;&lt;li&gt;**STRETCH** Anyone can see the approximate pick-up location for a LISTING&lt;/li&gt;&lt;li&gt;**STRETCH** Users can post multiple ads by adding ads from the staging area to a cart (The cart is an incomplete ORDER, which is submitted with user payment.)&lt;/li&gt;&lt;li&gt;**STRETCH** Users can select which AD PRODUCT (pricing structure) to apply to their ad, which assigns a price to ORDER ITEMS + priority level to the LISTING&amp;nbsp;&lt;/li&gt;&lt;li&gt;**STRETCH** Users are sent receipts for their posted ads (ORDERS) via their email&lt;/li&gt;&lt;li&gt;**STRETCH** Super-users can create, edit, and delete AD PRODUCTS (pricing structures)&lt;/li&gt;&lt;/ul&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="-1700" y="50" width="500" height="985" as="geometry" />
         </mxCell>
         <mxCell id="djq6IaJUHDn9vAA4K8EV-55" value="conversations" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;html=1;" vertex="1" parent="1">
@@ -550,7 +615,7 @@
             <mxPoint x="40" y="565" as="sourcePoint" />
             <mxPoint x="200" y="245" as="targetPoint" />
             <Array as="points">
-              <mxPoint y="135" />
+              <mxPoint y="5" />
               <mxPoint y="165" />
             </Array>
           </mxGeometry>
@@ -560,7 +625,7 @@
             <mxPoint x="-280" y="930" as="sourcePoint" />
             <mxPoint x="-120" y="610" as="targetPoint" />
             <Array as="points">
-              <mxPoint y="135" />
+              <mxPoint y="5" />
               <mxPoint y="745" />
             </Array>
           </mxGeometry>
@@ -652,7 +717,7 @@
             <mxPoint x="20" y="1010" as="sourcePoint" />
             <mxPoint x="180" y="690" as="targetPoint" />
             <Array as="points">
-              <mxPoint y="135" />
+              <mxPoint y="5" />
               <mxPoint y="1025" />
             </Array>
           </mxGeometry>
@@ -724,7 +789,7 @@
             <mxPoint x="-70" y="520" as="sourcePoint" />
             <mxPoint x="90" y="550" as="targetPoint" />
             <Array as="points">
-              <mxPoint y="135" />
+              <mxPoint y="5" />
               <mxPoint y="545" />
             </Array>
           </mxGeometry>
@@ -848,7 +913,7 @@
             <mxPoint x="-30" y="145" as="sourcePoint" />
             <mxPoint x="130" y="175" as="targetPoint" />
             <Array as="points">
-              <mxPoint y="135" />
+              <mxPoint y="5" />
               <mxPoint y="-65" />
             </Array>
           </mxGeometry>
