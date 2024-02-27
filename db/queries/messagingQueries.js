@@ -1,3 +1,4 @@
+// MAY REMOVE FROM PROJECT (DOING MAILTO AS PRIMARY MESSAGING METHOD)
 const db = require('../connection');
 
 const browseConversations = (userId) => {
