@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
+// uncomment when db is live
+// const db = require('../connection');
+
 const usersData = [
   {
     username: 'user1',
@@ -41,5 +44,28 @@ router.get('/:id', (req, res) => {
     return res.status(404).send('Please try again');
 });
 
+// still need to test db query.
+
+// router.get('/:id', (req, res) => {
+//   const userId = req.params.id;
+
+//   db.query(`SELECT * 
+//      FROM users 
+//      WHERE id = $1`, 
+//      [userId])
+//      .then((results) => {
+//       if (results.rows.length > 0) {
+//         // Set a cookie to maintain the user's session
+//         const username = results.rows[0].username;
+//         res.cookie('user', username);
+//         return res.redirect('/');
+//       } 
+//       return res.status(404).send("Please try again")
+//      })
+//      .catch((error) => {
+//       console.log(error) 
+//       return res.status(500).send("Internal Server Error")
+//      })
+// });
 
 module.exports = router;
