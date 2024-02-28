@@ -25,7 +25,7 @@ const usersData = [
   }
 ];
 
-// ALL ROUTES IN THIS FILE AND FILES IN /routes START AS /login (mounted route) - NO NEED TO ADD /login to server requests.
+// !! IMPORTANT!! ALL ROUTES IN THIS FILE AND FILES IN /routes START AS /login (mounted route) - NO NEED TO ADD /login to server requests.
 router.get('/:id', (req, res) => {
   const requestedId = parseInt(req.params.id);
   console.log('requestedID:', requestedId)
