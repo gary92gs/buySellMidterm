@@ -1,3 +1,26 @@
--- Users table seeds here (Example)
-INSERT INTO users (name) VALUES ('Alice');
-INSERT INTO users (name) VALUES ('Kira');
+INSERT INTO users (username,email,password,profile_picture) VALUES
+
+('JohnDoe', 'john.doe@example.com', 'password', '/db/user_profile_images/1.png'),
+('AlexRider', 'alex.rider@example.com', 'password', '/db/user_profile_images/2.png'),
+('TonyHawk', 'tony.hawk@example.com', 'password', '/db/user_profile_images/3.png'),
+('JakePeralta', 'jake.peralta@example.com', 'password', '/db/user_profile_images/4.png'),
+('TonyStark', 'tony.stark@example.com', 'password', '/db/user_profile_images/5.png'),
+('BruceWayne', 'bruce.wayne@example.com', 'password', '/db/user_profile_images/6.png'),
+('ClarkKent', 'clark.kent@example.com', 'password', '/db/user_profile_images/7.png'),
+('PeterParker', 'peter.parker@example.com', 'password', '/db/user_profile_images/8.png'),
+('HarryPotter', 'harry.potter@example.com', 'password', '/db/user_profile_images/9.png'),
+('RonWeasley', 'ron.weasley@example.com', 'password', '/db/user_profile_images/10.png'),
+('FredGeorge', 'fred.george@example.com', 'password', '/db/user_profile_images/11.png'),
+('NevilleLong', 'neville.long@example.com', 'password', '/db/user_profile_images/12.png'),
+('EmmaSwan', 'emma.swan@example.com', 'password', '/db/user_profile_images/13.png'),
+('OliviaPope', 'olivia.pope@example.com', 'password', '/db/user_profile_images/14.png'),
+('MeredithGrey', 'meredith.grey@example.com', 'password', '/db/user_profile_images/15.png'),
+('AnnaliseKeating', 'annalise.keating@example.com', 'password', '/db/user_profile_images/16.png'),
+('PhoebeBuffay', 'phoebe.buffay@example.com', 'password', '/db/user_profile_images/17.png'),
+('RachelGreen', 'rachel.green@example.com', 'password', '/db/user_profile_images/18.png'),
+('MonicaGeller', 'monica.geller@example.com', 'password', '/db/user_profile_images/19.png'),
+('LeslieKnope', 'leslie.knope@example.com', 'password', '/db/user_profile_images/20.png'),
+('LizLemon', 'liz.lemon@example.com', 'password', '/db/user_profile_images/21.png'),
+('DaenerysTargaryen', 'daenerys.targaryen@example.com', 'password', '/db/user_profile_images/22.png'),
+('AryaStark', 'arya.stark@example.com', 'password', '/db/user_profile_images/23.png'),
+('SansaStark', 'sansa.stark@example.com', 'password', '/db/user_profile_images/24.png');

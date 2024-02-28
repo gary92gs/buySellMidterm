@@ -6,6 +6,7 @@ CREATE TABLE listings (
   title VARCHAR(100) NOT NULL,
   description TEXT NOT NULL,
   price_cents INTEGER NOT NULL,
+  category TEXT NOT NULL,
   street_address TEXT NOT NULL,
   city TEXT NOT NULL,
   province TEXT NOT NULL,
