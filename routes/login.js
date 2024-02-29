@@ -39,7 +39,7 @@ router.get('/:id', (req, res) => {
   }
   if (user) {
     res.cookie('user', user.username);
-    return res.redirect('/');
+    return res.redirect('/listings');
   }
     return res.status(404).send('Please try again');
 });
