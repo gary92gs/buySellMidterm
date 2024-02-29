@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const cookieParser = require('cookie-parser');
+router.use(cookieParser());
 
 const listingsData = [
   { id: 1, title: 'Listing 1', description: 'Description for listing 1' },
@@ -34,8 +36,8 @@ const favouritesData = [
   { id: 3, user_id: 3, listing_id: 1 }
 ];
 
-router.get('/', (res, req) => {
-
-})
+router.get('/', (req, res) => {
+  
+});
 
 module.exports = router;
