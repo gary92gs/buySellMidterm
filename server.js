@@ -33,7 +33,8 @@ const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
 // NEW ROUTES
 const loginRoutes = require('./routes/login');
-const listingRoutes = require('./routes/listings')
+const listingRoutes = require('./routes/listings');
+const listingShow = require('./routes/listingShow');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -43,7 +44,8 @@ app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
 // NEW CONNECTIONS ADDES
 app.use('/login', loginRoutes);
-app.use('/listings', listingRoutes)
+app.use('/listings', listingRoutes);
+app.use('/listingShow', listingShow);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
