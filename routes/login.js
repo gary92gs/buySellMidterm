@@ -35,6 +35,7 @@ router.get('/:id', (req, res) => {
     if (userData.id === requestedId) {
       user = userData;
       console.log(userData);
+      break;
     }
   }
   if (user) {

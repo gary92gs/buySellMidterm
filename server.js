@@ -34,7 +34,7 @@ const usersRoutes = require('./routes/users');
 // NEW ROUTES
 const loginRoutes = require('./routes/login');
 const listingRoutes = require('./routes/listings');
-const listingShow = require('./routes/listingShow');
+const showRoutes = require('./routes/show');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -45,7 +45,7 @@ app.use('/users', usersRoutes);
 // NEW CONNECTIONS ADDES
 app.use('/login', loginRoutes);
 app.use('/listings', listingRoutes);
-app.use('/listingShow', listingShow);
+app.use('/show', showRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
