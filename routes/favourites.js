@@ -37,7 +37,36 @@ const favouritesData = [
 ];
 
 router.get('/', (req, res) => {
+    const loggedInUser = req.cookies && req.cookies.user;
+    console.log('This is the login cookie:', loggedInUser)
+    if (!loggedInUser) {
+      return res.status(401).send("Unauthorized: You need to have an account to view your favourites");
+    }
+    
+    let user = null;
+    for (const userData of usersData) {
+      if (userData.username === loggedInUser) {
+        user = userData;
+        console.log('This is the user', user)
+        break;
+      }
+    }
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
   
-});
+    const userId = user.id;
+  
+    const userFavorites = [];
+    for (const favorite of favouritesData) {
+      if (favorite.user_id === userId) {
+        let listing = listingsData.find(listingData => listingData.id === favorite.listing_id);
+        if (listing) {
+          userFavorites.push({ id: favorite.id, listing });
+        }
+      }
+    }
+    return res.send(userFavorites);
+  });
 
 module.exports = router;
