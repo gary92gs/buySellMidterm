@@ -12,17 +12,14 @@ const listingsData = [
 
 router.get('/:id', (req, res) => {
   const requestedId = parseInt(req.params.id);
-  console.log('This is the List ID:', requestedId);
   let uniqueListing;
-  console.log('user is:', uniqueListing, 'should be undefined');
   for (const listing of listingsData) {
     console.log('Current listing ID:', listing.id);
     if (listing.id === requestedId) {
-     uniqueListing = listing;
-     break;
+      uniqueListing = listing;
+      break;
     }
   }
-  console.log('This is the unique listing:', uniqueListing);
   if (!uniqueListing) {
     return res.status(404).send('Listing not found');
   }
