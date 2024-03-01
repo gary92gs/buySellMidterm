@@ -25,12 +25,11 @@ const usersData = [
   }
 ];
 
-// !! IMPORTANT!! ALL ROUTES IN THIS FILE AND FILES IN /routes START AS /login (mounted route) - NO NEED TO ADD /login to server requests.
+
 router.get('/:id', (req, res) => {
   const requestedId = parseInt(req.params.id);
-  console.log('requestedID:', requestedId)
   let user;
-  console.log('user is:', user, 'should be undefined');
+
   for (const userData of usersData) {
     if (userData.id === requestedId) {
       user = userData;
@@ -42,7 +41,7 @@ router.get('/:id', (req, res) => {
     res.cookie('user', user.username);
     return res.redirect('/listings');
   }
-    return res.status(404).send('Please try again');
+  return res.status(404).send('Please try again');
 });
 
 // still need to test db query.
@@ -50,23 +49,23 @@ router.get('/:id', (req, res) => {
 // router.get('/:id', (req, res) => {
 //   const userId = req.params.id;
 
-//   db.query(`SELECT * 
-//      FROM users 
-//      WHERE id = $1`, 
-//      [userId])
-//      .then((results) => {
+//   db.query(`SELECT *
+//      FROM users
+//      WHERE id = $1`,
+//   [userId])
+//     .then((results) => {
 //       if (results.rows.length > 0) {
 //         // Set a cookie to maintain the user's session
 //         const username = results.rows[0].username;
 //         res.cookie('user', username);
 //         return res.redirect('/');
-//       } 
-//       return res.status(404).send("Please try again")
-//      })
-//      .catch((error) => {
-//       console.log(error) 
-//       return res.status(500).send("Internal Server Error")
-//      })
+//       }
+//       return res.status(404).send("Please try again");
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//       return res.status(500).send("Internal Server Error");
+//     });
 // });
 
 module.exports = router;
