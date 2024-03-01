@@ -31,42 +31,41 @@ const usersData = [
 ];
 
 const favouritesData = [
-  { id: 1, user_id: 1, listing_id: 2 },
-  { id: 2, user_id: 2, listing_id: 3 },
-  { id: 3, user_id: 3, listing_id: 1 }
+  { id: 1, userID: 1, listingID: 2 },
+  { id: 2, userID: 2, listingID: 3 },
+  { id: 3, userID: 3, listingID: 1 }
 ];
 
 router.get('/', (req, res) => {
-    const loggedInUser = req.cookies && req.cookies.user;
-    console.log('This is the login cookie:', loggedInUser)
-    if (!loggedInUser) {
-      return res.status(401).send("Unauthorized: You need to have an account to view your favourites");
-    }
+  const loggedInUser = req.cookies && req.cookies.user;
     
-    let user = null;
-    for (const userData of usersData) {
-      if (userData.username === loggedInUser) {
-        user = userData;
-        console.log('This is the user', user)
-        break;
+  if (!loggedInUser) {
+    return res.status(401).send("Unauthorized: You need to have an account to view your favourites");
+  }
+    
+  let user = null;
+  for (const userData of usersData) {
+    if (userData.username === loggedInUser) {
+      user = userData;
+      break;
+    }
+  }
+  if (!user) {
+    return res.status(404).send("User not found");
+  }
+  
+  const userId = user.id;
+  
+  const userFavorites = [];
+  for (const favorite of favouritesData) {
+    if (favorite.userID === userId) {
+      let listing = listingsData.find(listingData => listingData.id === favorite.listingID);
+      if (listing) {
+        userFavorites.push({ id: favorite.id, listing });
       }
     }
-    if (!user) {
-      return res.status(404).send("User not found");
-    }
-  
-    const userId = user.id;
-  
-    const userFavorites = [];
-    for (const favorite of favouritesData) {
-      if (favorite.user_id === userId) {
-        let listing = listingsData.find(listingData => listingData.id === favorite.listing_id);
-        if (listing) {
-          userFavorites.push({ id: favorite.id, listing });
-        }
-      }
-    }
-    return res.send(userFavorites);
-  });
+  }
+  return res.send(userFavorites);
+});
 
 module.exports = router;
