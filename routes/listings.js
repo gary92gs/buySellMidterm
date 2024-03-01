@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-// uncomment when db connected
+
+// * UNCOMMENT WHEN TESTING LIVE DB *
 // const db = require('../connection');
 
 let listings = [
@@ -10,11 +11,31 @@ let listings = [
 ];
 
 router.get('/', (req, res) => {
-  // Send JSON for listingsData
   res.json(listings);
 });
 
-// test when connected
+router.get('/new', (req, res) => {
+  return res.status(200).send('You should be seeing this');
+});
+
+router.get('/:id', (req, res) => {
+  const requestedId = parseInt(req.params.id);
+  let uniqueListing;
+  for (const listing of listings) {
+    if (listing.id === requestedId) {
+      uniqueListing = listing;
+      break;
+    }
+  }
+  if (!uniqueListing) {
+    return res.status(404).send('Listing not found');
+  }
+  res.json(uniqueListing);
+});
+
+// !! TEST WHEN DB GOES LIVE !!
+
+// * ROUTE TO /LISTINGS *
 
 // router.get('/'), (req, res) => {
 //   db.query(`SELECT *
@@ -28,5 +49,60 @@ router.get('/', (req, res) => {
 //       return res.status(500).send("Internal Server Error");
 //     });
 // };
+
+// * ROUTE TO LISTINGS/NEW *
+
+// router.get('/new', (req, res) => {
+  //   res.render('tbd');
+// });
+
+// * ROUTE TO POST LISTING TO DB *
+
+// router.post('/', (req, res) => {
+//   const {
+//     ownerID,
+//     title,
+//     description,
+//     price_cents,
+//     street_address,
+//     city,
+//     country,
+//     postal_code,
+//     status
+//   } = req.body;
+
+//   db.query(`
+//     INSERT INTO listings (owner_id, title, description, price_cents, street_address, city, country, postal_code, status)
+//     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+//     RETURNING id;`,
+//   [ownerID, title, description, price_cents, street_address, city, country, postal_code, status])
+//     .then((result) => {
+//       const newListingId = result.rows[0].id;
+//       return res.redirect(`/show/${newListingId}`);
+//     })
+//     .catch((error) => {
+//       console.error('Error adding new listing:', error);
+//       // return res.status(500).send('Internal Server Error');
+//     });
+// });
+
+// * ROUTE TO LISTINGS/:ID *
+
+// router.get('/:id', (req, res) => {
+//   const requestedId = parseInt(req.params.id);
+//   db.query('SELECT * FROM listings WHERE id = $1', [requestedId])
+//     .then((result) => {
+//       if (result.rows.length > 0) {
+//         const uniqueListing = result.rows[0];
+//         return res.render('tbd', { listing: uniqueListing });
+//       }
+//       console.log('Listing not found');
+//       return res.status(404).send("Please try again")
+//     })
+//     .catch((error) => {
+//       console.error('Error fetching listing:', error);
+//       return res.status(500).send("Internal Server Error")
+//     });
+// });
 
 module.exports = router;
