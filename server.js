@@ -30,20 +30,16 @@ app.use(express.static('public'));
 // Note: Feel free to replace the example routes below with your own
 // NEW ROUTES
 const loginRoutes = require('./routes/login');
-const listingRoutes = require('./routes/listings');
-const showRoutes = require('./routes/show');
-const newRoutes = require('./routes/new');
-const favouritesRoutes = require('./routes/favourites')
+const listingsRoutes = require('./routes/listings');
+const favouritesRoutes = require('./routes/favourites');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 // NEW CONNECTIONS ADDES
 app.use('/login', loginRoutes);
-app.use('/listings', listingRoutes);
-app.use('/show', showRoutes);
-app.use('/new', newRoutes);
-app.use('/favourites', favouritesRoutes)
+app.use('/listings', listingsRoutes);
+app.use('/favourites', favouritesRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
