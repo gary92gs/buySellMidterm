@@ -12,3 +12,4 @@ const addFavourite = (userId, listingId) => {
 const removeFavourite = (userId,listingId) => {
   //find favourites entry and delete it (probably easiest to retrieve userID and listingID rather than favouritesId)
 }
+
