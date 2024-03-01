@@ -1,6 +1,5 @@
 INSERT INTO favourites (user_id, listing_id) VALUES
 
-INSERT INTO favourites (user_id, listing_id) VALUES
 (13, 91),
 (23, 251),
 (16, 157),

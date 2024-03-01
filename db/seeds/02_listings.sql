@@ -1,4 +1,4 @@
-INSERT INTO listings (title, description, price_cents, category, street_address, city, province, country, postal_code, status) VALUES
+INSERT INTO listings (owner_id, title, description, price_cents, category, street_address, city, province, country, postal_code, status) VALUES
 
 --0 Real Estate
 (1,'Cozy Downtown Condo', '2 bedroom, 2 bathroom condo with a view of the city skyline, close to amenities and public transportation.', 30000000, 'real estate', '100 King Street', 'Toronto', 'ON', 'Canada', 'M5X 1K7', True),
@@ -250,7 +250,7 @@ INSERT INTO listings (title, description, price_cents, category, street_address,
 (9,'Camping Tent', 'Spacious and easy-to-set-up camping tent, sleeps 4 comfortably.', 20000, 'sports', '456 Camp Rd', 'Portland', 'OR', 'USA', '97209', True),
 (10,'Bocce Ball Set', 'Full bocce ball set for fun outdoor games with family and friends.', 15000, 'sports', '789 Bocce Ct', 'Halifax', 'NS', 'Canada', 'B3J 3Z4', True),
 (11,'Mountain Climbing Gear', 'Complete mountain climbing gear set including harness, carabiners, and helmet.', 30000, 'sports', '321 Climb St', 'Boulder', 'CO', 'USA', '80302', True),
-(12,'Kayak', 'Single-person kayak, lightweight and durable, ideal for river or lake paddling.', 35000, 'sports', '654 Paddle Ave', 'Vancouver', 'BC', 'Canada', 'V6G 2J6', True);
+(12,'Kayak', 'Single-person kayak, lightweight and durable, ideal for river or lake paddling.', 35000, 'sports', '654 Paddle Ave', 'Vancouver', 'BC', 'Canada', 'V6G 2J6', True),
 
 --180 Real Estate
 (13,'Urban Chic Apartment', '1 bedroom, 1 bathroom apartment with modern design, in a prime city location.', 35000000, 'real estate', '987 Cityscape Blvd', 'Toronto', 'ON', 'Canada', 'M5A 2R8', True),

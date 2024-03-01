@@ -354,4 +354,4 @@ INSERT INTO listing_images (listing_id, image_path) VALUES
 (267,'/db/ad_images/352.jpg'),
 (268,'/db/ad_images/353.jpg'),
 (269,'/db/ad_images/354.jpg'),
-(270,'/db/ad_images/355.jpg'),
+(270,'/db/ad_images/355.jpg');
