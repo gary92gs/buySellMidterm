@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // uncomment when db is live
-// const db = require('../connection');
+// const db = require('../db/connection');
 
 const usersData = [
   {

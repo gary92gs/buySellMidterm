@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // * UNCOMMENT WHEN TESTING LIVE DB *
-// const db = require('../connection');
+// const db = require('../db/connection');
 
 let listings = [
   { id: 1, title: 'Listing 1', description: 'Description for listing 1' },
