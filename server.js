@@ -1,6 +1,9 @@
 // load .env data into process.env
 require('dotenv').config();
 
+//load path for static middleware
+const path = require('path');
+
 // Web server config
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
@@ -26,6 +29,7 @@ app.use(
   /* express.static(__dirname + '/styles') */
 );
 app.use(express.static('public'));
+app.use('/db/ad_images', express.static(path.join(__dirname, 'db', 'ad_images')));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own

@@ -15,7 +15,9 @@ router.get('/', (req, res) => {
   dblistings
     .browseListings(browseFilterObj)
     .then((listings) => {
-      res.json(listings);
+      //res.json(listings); // for if we use ajax request
+      console.log(listings);
+      return res.render('index copy', {listings});
     })
     .catch((err) => {
       console.log(err);
