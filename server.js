@@ -23,6 +23,7 @@ app.use(
     destination: __dirname + '/public/styles',
     isSass: false, // false => scss, true => sass
   })
+  /* express.static(__dirname + '/styles') */
 );
 app.use(express.static('public'));
 
