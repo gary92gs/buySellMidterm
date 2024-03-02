@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-// * UNCOMMENT WHEN TESTING LIVE DB *
-// const db = require('../db/connection');
+const dblistings = require('./../db/queries/listingQueries');
 
 let listings = [
   { id: 1, title: 'Listing 1', description: 'Description for listing 1' },
@@ -11,7 +10,16 @@ let listings = [
 ];
 
 router.get('/', (req, res) => {
-  res.json(listings);
+  const browseFilterObj = {};
+  //ADD LOGIC TO BUILD BROWSE-FILTER-OBJ BASED ON USER SEARCH PARAMETERS FROM CLIENT
+  dblistings
+    .browseListings(browseFilterObj)
+    .then((listings) => {
+      res.json(listings);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 router.get('/new', (req, res) => {
@@ -53,7 +61,7 @@ router.get('/:id', (req, res) => {
 // * ROUTE TO LISTINGS/NEW *
 
 // router.get('/new', (req, res) => {
-  //   res.render('tbd');
+//   res.render('tbd');
 // });
 
 // * ROUTE TO POST LISTING TO DB *
