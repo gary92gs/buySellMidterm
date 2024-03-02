@@ -1,0 +1,63 @@
+body {
+  background: rgb(179, 213, 241);
+}
+
+.listings-header {
+  padding-top: 100px;
+  text-align: center;
+}
+
+.specific-ad-container {
+  max-width: 700px;
+  margin: auto;
+  //padding: 50px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+
+  background:rgb(255, 255, 255);
+
+}
+.specific-ad-thumbnail img{
+  width: 400px;
+  height: 400px;
+  //overflow: hidden; /* So that the image doesn't overflow the container */
+}
+
+
+.specific-ad-container {
+  padding:  75px 100px;
+}
+
+.specific-ad-container h4 {
+  padding-top: 20px;
+}
+.specific-ad-container p {
+  padding-top: 20px;
+}
+
+.specific-ad-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.specific-ad-caption {
+  background-color: #f2f2f2;
+  border-radius: 10px; /* Rounded edges */
+  padding: 20px;
+  margin: 20px;
+}
+
+.image-slider {
+  position: relative;
+  display: inline-block;
+}
+
+.image-slider i { /* Pointer Icons*/
+ padding: 10px;
+ cursor: pointer;
+ font-size: 2rem;
+}
+
+.image-slider i:hover {
+  color: #1f88ff;
+}

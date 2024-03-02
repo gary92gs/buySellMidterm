@@ -1,0 +1,33 @@
+nav {
+  background-color: #3d4a76; /* Default background color */
+  color: #FFFFFF; /* Font color */
+  padding: 2.5em; /* Padding for spacing on the right and left */
+  display: flex;
+  justify-content: space-between; /* Align items on the right and left */
+  align-items: center; /* Center items vertically */
+  position: fixed; /* Nav-bar always on screen effect*/
+  top: 0;
+  left: 0;
+  right:0;
+}
+
+.dropdown-menu {
+  position: absolute;
+  left: auto; /* This ensures dropdown does not extend beyond screen */
+  right: 0;
+  min-width: 10rem;
+}
+
+.navbar-nav {
+  overflow: visible; /* Ensures dropdown menu to be fully visible outside the navbar */
+}
+.heart-icon {
+  // Heart button in nav-bar
+  font-size: 1.5rem;
+  color: white;
+}
+
+.heart-icon:hover {
+  cursor: pointer;
+  color:red;
+}

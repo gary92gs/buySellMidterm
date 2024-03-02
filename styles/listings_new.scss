@@ -1,0 +1,46 @@
+body {
+  background: rgb(179, 213, 241);
+}
+
+.listings-header {
+  padding-top: 100px;
+  //padding-left: 50px;
+  text-align: center;
+
+}
+
+.new-ad-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 50px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+
+  background:rgb(255, 255, 255);
+
+  form {
+    .form-group {
+      margin-bottom: 20px;
+
+      label {
+        font-weight: bold;
+        padding-top: 15px;
+        //color: white;
+      }
+
+      input[type="text"],
+      select {
+        width: 100%;
+        padding-bottom: 5px;
+      }
+
+      textarea {
+        width: 100%;
+        min-height: 150px; // Set the minimum height for the textarea
+        margin-top: 5px; // Space between label and textarea
+      }
+    }
+  }
+}
+
+

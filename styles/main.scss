@@ -2,10 +2,11 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  //align-items: center; This is what was making our items bundled together
+  margin-top: 60px;
   min-height: 100vh;
 
-  background: rgb(163, 208, 219);
+ /*  background: rgb(163, 208, 219);
   background: linear-gradient(
     227deg,
     rgba(163, 208, 219, 1) 0%,
@@ -14,5 +15,54 @@ body {
     rgba(163, 219, 208, 1) 59%,
     rgba(163, 208, 219, 1) 74%,
     rgba(163, 208, 219, 1) 100%
-  );
+  ); */
+
+  background: rgb(179, 213, 241);
+}
+
+header {
+  width: 100%;
+  padding: 20px;
+  margin: 0;
+  box-sizing: border-box;
+  padding-top: 100px;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+}
+
+.box {
+  display: flex;
+  flex-wrap: wrap;
+  height: 400px;
+  justify-content: space-around;
+}
+
+.item {
+  background-color: rgb(255, 255, 255);
+  padding: 1em;
+}
+
+.thumbnail img{
+  width: 250px;
+  height: 250px;
+  //overflow: hidden; /* So that the image doesn't overflow the container */
+}
+
+.items-heart-icon {
+  // Heart button in listing items
+  font-size: 1.75rem;
+}
+
+.items-heart-icon:hover {
+  cursor: pointer;
+  color:red;
+}
+
+.listing-buttons {
+  display: flex;
+  justify-content: space-between;
 }
