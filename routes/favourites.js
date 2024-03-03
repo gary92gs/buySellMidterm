@@ -1,7 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const cookieParser = require('cookie-parser');
-router.use(cookieParser());
 
 const listingsData = [
   { id: 1, title: 'Listing 1', description: 'Description for listing 1' },
@@ -38,11 +36,11 @@ const favouritesData = [
 
 router.get('/', (req, res) => {
   const loggedInUser = req.cookies && req.cookies.user;
-    
+
   if (!loggedInUser) {
     return res.status(401).send("Unauthorized: You need to have an account to view your favourites");
   }
-    
+
   let user = null;
   for (const userData of usersData) {
     if (userData.username === loggedInUser) {
@@ -53,9 +51,9 @@ router.get('/', (req, res) => {
   if (!user) {
     return res.status(404).send("User not found");
   }
-  
+
   const userId = user.id;
-  
+
   const userFavorites = [];
   for (const favorite of favouritesData) {
     if (favorite.userID === userId) {

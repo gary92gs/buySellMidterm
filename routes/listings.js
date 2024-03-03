@@ -10,14 +10,24 @@ let listings = [
 ];
 
 router.get('/', (req, res) => {
-  const browseFilterObj = {};
+  console.log('req.body',req.query);
   //ADD LOGIC TO BUILD BROWSE-FILTER-OBJ BASED ON USER SEARCH PARAMETERS FROM CLIENT
+  const browseFilterObj = {
+    page: req.query.page || 1,
+    userSearch: req.query.userSearch,
+    category: req.query.category,
+  };
+  //grab current page number from client to query database for subsequent pages
+  const currentPage = req.query.page || 1;
+
+
+  //query the database and render page based on query-results
   dblistings
     .browseListings(browseFilterObj)
     .then((listings) => {
       //res.json(listings); // for if we use ajax request
       console.log(listings);
-      return res.render('index copy', {listings});
+      return res.render('index copy', {listings, currentPage});
     })
     .catch((err) => {
       console.log(err);
