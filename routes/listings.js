@@ -3,6 +3,7 @@ const router = express.Router();
 
 const dblistings = require('./../db/queries/listingQueries');
 
+//can we delete listings? Note: Ask Garrett why 'const' keyword is better here
 let listings = [
   { id: 1, title: 'Listing 1', description: 'Description for listing 1' },
   { id: 2, title: 'Listing 2', description: 'Description for listing 2' },
@@ -10,25 +11,22 @@ let listings = [
 ];
 
 router.get('/', (req, res) => {
-  console.log('req.cookies', req.cookies);
   //ADD LOGIC TO BUILD BROWSE-FILTER-OBJ BASED ON USER SEARCH PARAMETERS FROM CLIENT
-  const browseFilterObj = {
+  const filterObj = {
     category: req.cookies.category,
-    userSearch: req.query.userSearch,
-    
-    page: req.cookies.currentPage || 1,
+    userSearch: req.cookies.userSearch,
+    city: req.cookies.city,
+    province: req.cookies.province,
+    country: req.cookies.country,
+    currentPage: req.cookies.currentPage || 1,
   };
-  //grab current page number from client to query database for subsequent pages
-  const currentPage = req.query.page || 1;
-
 
   //query the database and render page based on query-results
   dblistings
-    .browseListings(browseFilterObj)
+    .browseListings(filterObj)
     .then((listings) => {
       //res.json(listings); // for if we use ajax request
-      console.log(listings);
-      return res.render('index copy', {listings, currentPage});
+      return res.render('index', {listings, filterObj});
     })
     .catch((err) => {
       console.log(err);

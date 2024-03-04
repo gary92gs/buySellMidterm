@@ -61,6 +61,7 @@ app.get('/', (req, res) => {
       res.cookie(cookieName, '', { expires: new Date(0)});
     }
   }
+  //then redirect to /listings route (default home page)
   res.redirect('/listings');
 });
 

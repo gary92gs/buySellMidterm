@@ -22,7 +22,6 @@
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
 
 
   <script src="/vendor/jquery-3.0.0.js"></script>
@@ -48,80 +47,31 @@
 
  <!---------------------- Ad Listings --------------------------->
 <div class="box">
-  <!--ONE -->
+
+  <% listings.forEach(listing => { %>
     <div class="item" id="One">
-        <div class="thumbnail">
-          <img src="https://duckopolis.com/cdn/shop/collections/Trents_Pics_1_600_360x_95e3facf-2b05-4438-8b6f-b3f545475055_580x.jpg?v=1643059483" alt="other duck">
-
-            <div class="caption">
-              <h3>Listing One</h3>
-              <p>Price: $10</p>
-              <p>Description of product ....</p>
-              <p class="listing-buttons">
-                <a href="#" class="btn btn-primary" role="button">Purchase</a>
-                <i class="fa-regular fa-heart items-heart-icon"></i>
-              </p>
-            </div>
-
-        </div>
-    </div>
-
-  <!--TWO -->
-    <div class="item" id="Two">
-        <div class="thumbnail">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMO8iQn6ggntfIyYMLDdT6pKXuWZRt9JBnEQ&usqp=CAU" alt="other duck">
-
-            <div class="caption">
-              <h3>Listing Two</h3>
-              <p>Price: $100</p>
-              <p>Description of product ....</p>
-              <p class="listing-buttons">
-                <a href="#" class="btn btn-primary" role="button">Purchase</a>
-                <i class="fa-regular fa-heart items-heart-icon"></i>
-              </p>
-            </div>
-
-        </div>
-    </div>
-
-  <!--THREE -->
-    <div class="item" id="Three">
       <div class="thumbnail">
-        <img src="https://www.allaboutbirds.org/guide/assets/photo/295417571-480px.jpg" alt="White Goose">
-
-          <div class="caption">
-            <h3>Listing Three</h3>
-            <p>Price: $100</p>
-            <p>Description of product ....</p>
-            <p class="listing-buttons">
-              <a href="#" class="btn btn-primary" role="button">Purchase</a>
-              <i class="fa-regular fa-heart items-heart-icon"></i>
-            </p>
-          </div>
-
+        <img src="..<%= listing.image_path%>" alt="<%= listing.title%>">
+        <div class="caption">
+          <h3><%= listing.title %></h3>
+          <p><%= listing.price_cents %></p>
+          <p><%= listing.description %></p>
+          <p class="listing-buttons">
+            <a href="#" class="btn btn-primary" role="button">Purchase</a>
+            <i class="fa-regular fa-heart items-heart-icon"></i>
+          </p>
+        </div>
       </div>
     </div>
+  <% }); %>
 
-  <!--FOUR -->
-    <div class="item" id="Four">
-      <div class="thumbnail">
-        <img src="https://thumb.ac-illust.com/b3/b323a5a6e1a5a1d98aa4c86fb9feb123_t.jpeg" alt="White Goose">
+</div> <!--BOX -->
 
-          <div class="caption">
-            <h3>Listing Four</h3>
-            <p>Price: $100</p>
-            <p>Description of product ....</p>
-            <p class="listing-buttons">
-              <a href="#" class="btn btn-primary" role="button">Purchase</a>
-              <i class="fa-regular fa-heart items-heart-icon"></i>
-            </p>
-
-          </div>
-
-      </div>
-    </div>
-
-  </div> <!--BOX -->
+<div class="page-selector">
+  <button class="previous-page"><</button>
+  <span class="current-page"><%= filterObj.currentPage %></span>
+  <button class="next-page">></button>
+</div>
 
 <hr class="hr hr-blurry" /> <!--Horizontal Spacing -->
 <hr class="hr hr-blurry" />
@@ -132,20 +82,20 @@
 <!---------------------- Bootstrap JS --------------------------->
 
   <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
+    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"
+  ></script>
 </body>
 
 </html>

@@ -18,14 +18,14 @@
     </ul>
 
     <form id="setLocationForm" class="form-inline my-2 my-lg-0" action="/listings" method="GET">
-      <input class="form-control mr-sm-2" type="text" placeholder="city" aria-label="Search" name="city">
-      <input class="form-control mr-sm-2" type="text" placeholder="province" aria-label="Search" name="province">
-      <input class="form-control mr-sm-2" type="text" placeholder="country" aria-label="Search" name="country">
+      <input class="form-control mr-sm-2" type="text" placeholder="City" value="<%= filterObj.city %>" aria-label="Search" name="city">
+      <input class="form-control mr-sm-2" type="text" placeholder="Province" value="<%= filterObj.province %>" aria-label="Search" name="province">
+      <input class="form-control mr-sm-2" type="text" placeholder="Country" value="<%= filterObj.country %>" aria-label="Search" name="country">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Set Location</button>
     </form>
 
     <form id="userSearchForm" class="form-inline my-2 my-lg-0" action="/listings" method="GET">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="userSearch">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" value="<%= filterObj.userSearch %>" aria-label="Search" name="userSearch">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
 
@@ -41,6 +41,7 @@
       <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
 
       <div class="dropdown-menu" aria-labelledby="dropdown01">
+        <button class="dropdown-item">All Categories</button>
         <button class="dropdown-item">Clothing</button>
         <button class="dropdown-item">Electronics</button>
         <button class="dropdown-item">Furniture</button>
