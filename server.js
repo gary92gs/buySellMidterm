@@ -54,7 +54,14 @@ app.use('/favourites', favouritesRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  res.render('index');
+  //delete all cookies, EXCEPT USER (this clears search parameters and maintains login status)
+  for (const cookieName in req.cookies) {
+    if (cookieName !== 'user') {
+      //sets cookie expiry to date in the past, so it auto deletes
+      res.cookie(cookieName, '', { expires: new Date(0)});
+    }
+  }
+  res.redirect('/listings');
 });
 
 app.listen(PORT, () => {

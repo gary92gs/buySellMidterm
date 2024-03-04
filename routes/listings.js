@@ -10,12 +10,13 @@ let listings = [
 ];
 
 router.get('/', (req, res) => {
-  console.log('req.body',req.query);
+  console.log('req.cookies', req.cookies);
   //ADD LOGIC TO BUILD BROWSE-FILTER-OBJ BASED ON USER SEARCH PARAMETERS FROM CLIENT
   const browseFilterObj = {
-    page: req.query.page || 1,
+    category: req.cookies.category,
     userSearch: req.query.userSearch,
-    category: req.query.category,
+    
+    page: req.cookies.currentPage || 1,
   };
   //grab current page number from client to query database for subsequent pages
   const currentPage = req.query.page || 1;
