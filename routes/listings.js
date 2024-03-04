@@ -25,8 +25,7 @@ router.get('/', (req, res) => {
   dblistings
     .browseListings(filterObj)
     .then((listings) => {
-      //res.json(listings); // for if we use ajax request
-      return res.render('index', {listings, filterObj});
+      return res.render('index', { listings, filterObj });
     })
     .catch((err) => {
       console.log(err);
@@ -38,6 +37,16 @@ router.get('/new', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
+  //necessary for banner (it references cookies)
+  const filterObj = {
+    category: req.cookies.category,
+    userSearch: req.cookies.userSearch,
+    city: req.cookies.city,
+    province: req.cookies.province,
+    country: req.cookies.country,
+    currentPage: req.cookies.currentPage || 1,
+  };
+
   const requestedId = parseInt(req.params.id);
   let uniqueListing;
   for (const listing of listings) {
@@ -49,25 +58,13 @@ router.get('/:id', (req, res) => {
   if (!uniqueListing) {
     return res.status(404).send('Listing not found');
   }
-  res.json(uniqueListing);
+  // res.json(uniqueListing);
+  res.render('listings_show',{filterObj});
 });
 
 // !! TEST WHEN DB GOES LIVE !!
 
 // * ROUTE TO /LISTINGS *
-
-// router.get('/'), (req, res) => {
-//   db.query(`SELECT *
-//   FROM listings`)
-//     .then((results) => {
-//       listings = results.rows;
-//       return res.render('listings', { listings });
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//       return res.status(500).send("Internal Server Error");
-//     });
-// };
 
 // * ROUTE TO LISTINGS/NEW *
 

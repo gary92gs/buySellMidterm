@@ -54,9 +54,9 @@ app.use('/favourites', favouritesRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  //delete all cookies, EXCEPT USER (this clears search parameters and maintains login status)
+  //delete all cookies, EXCEPT USER AND LOCATION (this clears search parameters and maintains login status)
   for (const cookieName in req.cookies) {
-    if (cookieName !== 'user') {
+    if (!['user','city','province','country'].includes(cookieName)) {
       //sets cookie expiry to date in the past, so it auto deletes
       res.cookie(cookieName, '', { expires: new Date(0)});
     }
