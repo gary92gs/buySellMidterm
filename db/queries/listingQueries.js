@@ -38,6 +38,7 @@ const browseListings = (browseFilterObj) => {
       whereCraftingArray.push(`${searchParameter} = $${queryEscapeArray.length}`);
     }
   }
+
   //if WHERE statements were generated, then implant it into the queryCraftingArray. Otherwise, skip it.
   if (whereCraftingArray.length) {
     queryCraftingArray[1] = 'WHERE ' + whereCraftingArray.join(' AND ');

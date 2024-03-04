@@ -3,13 +3,6 @@ const router = express.Router();
 
 const dblistings = require('./../db/queries/listingQueries');
 
-//can we delete listings? Note: Ask Garrett why 'const' keyword is better here
-let listings = [
-  { id: 1, title: 'Listing 1', description: 'Description for listing 1' },
-  { id: 2, title: 'Listing 2', description: 'Description for listing 2' },
-  { id: 3, title: 'Listing 3', description: 'Description for listing 3' }
-];
-
 router.get('/', (req, res) => {
   //ADD LOGIC TO BUILD BROWSE-FILTER-OBJ BASED ON USER SEARCH PARAMETERS FROM CLIENT
   const filterObj = {
@@ -36,6 +29,7 @@ router.get('/new', (req, res) => {
   return res.status(200).send('You should be seeing this');
 });
 
+//RETRIEVE INDIVIDUAL LISTING
 router.get('/:id', (req, res) => {
   //necessary for banner (it references cookies)
   const filterObj = {
@@ -59,7 +53,7 @@ router.get('/:id', (req, res) => {
     return res.status(404).send('Listing not found');
   }
   // res.json(uniqueListing);
-  res.render('listings_show',{filterObj});
+  res.render('listings_show', {filterObj});
 });
 
 // !! TEST WHEN DB GOES LIVE !!
@@ -68,12 +62,15 @@ router.get('/:id', (req, res) => {
 
 // * ROUTE TO LISTINGS/NEW *
 
+//GET FORM PAGE FOR CREATE NEW LISTING
+// '/listings/:id'
 // router.get('/new', (req, res) => {
 //   res.render('tbd');
 // });
 
 // * ROUTE TO POST LISTING TO DB *
 
+//POST NEW LISTING
 // router.post('/', (req, res) => {
 //   const {
 //     ownerID,
