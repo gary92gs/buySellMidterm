@@ -69,7 +69,7 @@ router.post('/', (req, res) => {
 
   //grab listing details required for posting to listings table (to be passed as arguement)
   const listingObj = {
-    ownerId: req.cookies.id, //.id may need to be changed
+    ownerId: req.cookies.userId,
     title: req.body.title,
     description: req.body.description,
     priceCents: req.body.priceDollars + '00',
@@ -83,17 +83,18 @@ router.post('/', (req, res) => {
   };
   console.log('listingObj', listingObj);
 
-  // dblistings
-  //   .postNewListing(listingObj)
-  //   .then(() => {
-  //     dbImages.postListingImages()
-  //   })
-  //   .then(() => {
+  dblistings
+    .postNewListing(listingObj)
+    .then((result) => {
+      console.log(result);
+      // dbImages.postListingImages()
+    })
+    // .then(() => {
 
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
+    // })
+    .catch((err) => {
+      console.log(err);
+    });
   res.redirect('/listings');
 });
 

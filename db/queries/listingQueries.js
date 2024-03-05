@@ -66,20 +66,20 @@ const postNewListing = (listingObj) => {
     listingObj.ownerId,
     listingObj.title,
     listingObj.description,
-    listingObj.price_cents,
+    listingObj.priceCents,
     listingObj.category,
-    listingObj.street_address,
+    listingObj.streetAddress,
     listingObj.city,
     listingObj.province,
     listingObj.country,
-    listingObj.postal_code,
+    listingObj.postalCode,
     listingObj.status,
   ];
 
   return db
     .query(insertQuery, EscapeArray)
-    .then(() => {
-      return Promise.resolve();
+    .then((result) => {
+      return Promise.resolve(result);
     })
     .catch((err) => {
       console.log(err);
