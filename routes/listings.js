@@ -25,9 +25,17 @@ router.get('/', (req, res) => {
     });
 });
 
-//
+// GET FORM PAGE FOR CREATE NEW LISTING
 router.get('/new', (req, res) => {
-  return res.status(200).send('You should be seeing this');
+  //necessary for banner (it references cookies)
+  const filterObj = {
+    userSearch: req.cookies.userSearch,
+    city: req.cookies.city,
+    province: req.cookies.province,
+    country: req.cookies.country,
+  };
+
+  res.render('listings_new', { filterObj });
 });
 
 //RETRIEVE INDIVIDUAL LISTING
@@ -52,10 +60,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
-// GET FORM PAGE FOR CREATE NEW LISTING
-router.get('/new', (req, res) => {
-  res.render('listings_new');
-});
+
 
 // * ROUTE TO POST LISTING TO DB *
 
