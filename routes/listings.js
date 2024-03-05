@@ -52,17 +52,10 @@ router.get('/:id', (req, res) => {
     });
 });
 
-// !! TEST WHEN DB GOES LIVE !!
-
-// * ROUTE TO /LISTINGS *
-
-// * ROUTE TO LISTINGS/NEW *
-
-//GET FORM PAGE FOR CREATE NEW LISTING
-// '/listings/:id'
-// router.get('/new', (req, res) => {
-//   res.render('tbd');
-// });
+// GET FORM PAGE FOR CREATE NEW LISTING
+router.get('/new', (req, res) => {
+  res.render('listings_new');
+});
 
 // * ROUTE TO POST LISTING TO DB *
 
