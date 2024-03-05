@@ -21,7 +21,6 @@
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
   <link rel="stylesheet" href="/styles/listings_show.css" />
 
 
@@ -36,20 +35,23 @@
 
 <!---------------------- Header --------------------------->
 
-  <h1 class="pb-3 mb-4 listings-header">Duckling For Sale</h1>
+  <h1 class="pb-3 mb-4 listings-header"><%= listingArray[0].title %></h1>
 
 <!---------------------- Main --------------------------->
   <div class="specific-ad-container">
 
       <div class="image-slider">
         <i class="fas fa-arrow-left prev"></i>
-        <img src="https://duckopolis.com/cdn/shop/collections/Trents_Pics_1_600_360x_95e3facf-2b05-4438-8b6f-b3f545475055_580x.jpg?v=1643059483" alt="other duck" class="specific-ad-thumbnail">
+        <% listingArray.forEach(element => { %>
+          <img src="<%= element.image_path %>" alt="other duck" class="specific-ad-thumbnail">
+
+        <% }) %>
         <i class="fas fa-arrow-right next"></i>
       </div>
 
           <div class="specific-ad-caption">
-            <h4 class="specific-ad-price">Price: $10</h4>
-            <p>Description of product ....</p>
+            <h4 class="specific-ad-price">Price: <%= listingArray[0].price_cents %></h4>
+            <p><%= listingArray[0].description %></p>
 
             <p class="specific-ad-buttons">
               <a href="#" class="btn btn-primary" role="button">Contact Seller</a>

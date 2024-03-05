@@ -38,14 +38,15 @@ router.get('/:id', (req, res) => {
     province: req.cookies.province,
     country: req.cookies.country,
   };
-
+  //grab id of individual listing that user clicked
   const requestedId = parseInt(req.params.id);
-  console.log(requestedId);
+
 
   dblistings
     .getListing(requestedId)
-    .then((listing) => {
-      res.render('listings_show', { listing, filterObj });
+    .then((listingArray) => {
+      console.log(listingArray);
+      res.render('listings_show', { listingArray, filterObj });
     })
     .catch((err) => {
       console.log(err);
