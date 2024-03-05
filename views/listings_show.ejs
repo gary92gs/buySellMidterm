@@ -33,18 +33,15 @@
 <!---------------------- Nav Bar --------------------------->
   <%- include('partials/nav-bar') %>
 
-<!---------------------- Header --------------------------->
-
-  <h1 class="pb-3 mb-4 listings-header"><%= listingArray[0].title %></h1>
 
 <!---------------------- Main --------------------------->
-  <div class="specific-ad-container">
+<div class="specific-ad-container">
+    <h1 class="pb-3 mb-4 listings-header"><%= listingArray[0].title %></h1>
 
       <div class="image-slider">
         <i class="fas fa-arrow-left prev"></i>
         <% listingArray.forEach(element => { %>
           <img src="<%= element.image_path %>" alt="other duck" class="specific-ad-thumbnail">
-
         <% }) %>
         <i class="fas fa-arrow-right next"></i>
       </div>

@@ -3,8 +3,9 @@ const router = express.Router();
 
 const dblistings = require('./../db/queries/listingQueries');
 
+//RETRIEVE MANY LISTINGS BASED ON USER-SPECIFIED SEARCH PARAMETERS
 router.get('/', (req, res) => {
-  //ADD LOGIC TO BUILD BROWSE-FILTER-OBJ BASED ON USER SEARCH PARAMETERS FROM CLIENT
+  //grab search parameters from cookies (will be passed into browseListings query)
   const filterObj = {
     category: req.cookies.category,
     userSearch: req.cookies.userSearch,
@@ -13,7 +14,6 @@ router.get('/', (req, res) => {
     country: req.cookies.country,
     currentPage: req.cookies.currentPage || 1,
   };
-
   //query the database and render page based on query-results
   dblistings
     .browseListings(filterObj)
@@ -25,6 +25,7 @@ router.get('/', (req, res) => {
     });
 });
 
+//
 router.get('/new', (req, res) => {
   return res.status(200).send('You should be seeing this');
 });
@@ -40,12 +41,10 @@ router.get('/:id', (req, res) => {
   };
   //grab id of individual listing that user clicked
   const requestedId = parseInt(req.params.id);
-
-
+  //query the database for info regarding the user-selected listing
   dblistings
     .getListing(requestedId)
     .then((listingArray) => {
-      console.log(listingArray);
       res.render('listings_show', { listingArray, filterObj });
     })
     .catch((err) => {
