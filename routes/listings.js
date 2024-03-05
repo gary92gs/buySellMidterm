@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const dblistings = require('./../db/queries/listingQueries');
+const dbImages = require('./../db/queries/listingImagesQueries');
 
 //RETRIEVE MANY LISTINGS BASED ON USER-SPECIFIED SEARCH PARAMETERS
 router.get('/', (req, res) => {
@@ -60,38 +61,41 @@ router.get('/:id', (req, res) => {
     });
 });
 
+//POST/CREATE NEW LISTING
+router.post('/', (req, res) => {
+  console.log('req.cookies', req.cookies);
 
+  //check if user is logged in (only logged-in/registered users can post ads)
 
-// * ROUTE TO POST LISTING TO DB *
+  //grab listing details required for posting to listings table (to be passed as arguement)
+  const listingObj = {
+    ownerId: req.cookies.id, //.id may need to be changed
+    title: req.body.title,
+    description: req.body.description,
+    priceCents: req.body.priceDollars + '00',
+    category: req.body.category,
+    streetAddress: req.body.streetAddress,
+    city: req.body.city,
+    province: req.body.province,
+    country: req.body.country,
+    postalCode: req.body.postalCode,
+    status: true,
+  };
+  console.log('listingObj', listingObj);
 
-//POST NEW LISTING
-// router.post('/', (req, res) => {
-//   const {
-//     ownerID,
-//     title,
-//     description,
-//     price_cents,
-//     street_address,
-//     city,
-//     country,
-//     postal_code,
-//     status
-//   } = req.body;
+  // dblistings
+  //   .postNewListing(listingObj)
+  //   .then(() => {
+  //     dbImages.postListingImages()
+  //   })
+  //   .then(() => {
 
-//   db.query(`
-//     INSERT INTO listings (owner_id, title, description, price_cents, street_address, city, country, postal_code, status)
-//     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-//     RETURNING id;`,
-//   [ownerID, title, description, price_cents, street_address, city, country, postal_code, status])
-//     .then((result) => {
-//       const newListingId = result.rows[0].id;
-//       return res.redirect(`/show/${newListingId}`);
-//     })
-//     .catch((error) => {
-//       console.error('Error adding new listing:', error);
-//       // return res.status(500).send('Internal Server Error');
-//     });
-// });
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+  res.redirect('/listings');
+});
 
 // * ROUTE TO LISTINGS/:ID *
 

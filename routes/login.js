@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const dbUsers = require('./../db/queries/userQueries');
+
 // uncomment when db is live
 // const db = require('../db/connection');
 
@@ -26,46 +28,48 @@ const usersData = [
 ];
 
 
-router.get('/:id', (req, res) => {
-  const requestedId = parseInt(req.params.id);
-  let user;
+// router.get('/:id', (req, res) => {
+//   //grab id from params to match with users.id query
+//   const requestedId = parseInt(req.params.id);
+//   let user;
 
-  for (const userData of usersData) {
-    if (userData.id === requestedId) {
-      user = userData;
-      console.log(userData);
-      break;
-    }
-  }
-  if (user) {
-    res.cookie('user', user.username);
-    return res.redirect('/listings');
-  }
-  return res.status(404).send('Please try again');
-});
+//   for (const userData of usersData) {
+//     if (userData.id === requestedId) {
+//       user = userData;
+//       console.log(userData);
+//       break;
+//     }
+//   }
+//   if (user) {
+//     res.cookie('user', user.username);
+//     return res.redirect('/listings');
+//   }
+//   return res.status(404).send('Please try again');
+// });
 
 // still need to test db query.
 
-// router.get('/:id', (req, res) => {
-//   const userId = req.params.id;
+//Logs User into account
+router.get('/:id', (req, res) => {
+  //grab id from params to match with users.id query
+  const userId = req.params.id;
 
-//   db.query(`SELECT *
-//      FROM users
-//      WHERE id = $1`,
-//   [userId])
-//     .then((results) => {
-//       if (results.rows.length > 0) {
-//         // Set a cookie to maintain the user's session
-//         const username = results.rows[0].username;
-//         res.cookie('user', username);
-//         return res.redirect('/');
-//       }
-//       return res.status(404).send("Please try again");
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//       return res.status(500).send("Internal Server Error");
-//     });
-// });
+  dbUsers
+    .getUserById(userId)
+    .then((user) => {
+      console.log(user);
+      //if user is registered
+      if (user) {
+        // Set a cookie to maintain the user's session
+        res.cookie('userId', user.id);
+        return res.redirect('/');
+      }
+      return res.status(404).send("Please try again");
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(500).send("Internal Server Error");
+    });
+});
 
 module.exports = router;

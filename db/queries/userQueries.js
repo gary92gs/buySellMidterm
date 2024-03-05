@@ -1,7 +1,20 @@
 const db = require('../connection');
 
-const checkLoginStatus = () => {
+const getUserById = (userId) => {
   //confirms user is logged in before performing user-gated operations
+  return db
+    .query(`
+      SELECT *
+      FROM users
+      WHERE id = $1;
+    `, [userId])
+    .then((result) => {
+      return Promise.resolve(result.rows[0]);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
 };
 
 
@@ -26,3 +39,7 @@ const createUser = (userObj) => {
   //verify user email or username has not been used before
   //then insert new user into database
 };
+
+module.exports = {
+  getUserById,
+}

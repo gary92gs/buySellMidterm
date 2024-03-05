@@ -21,7 +21,6 @@
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
   <link rel="stylesheet" href="/styles/listings_new.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
@@ -40,39 +39,58 @@
 
 <!------------ Main Container ---------------->
 <div class="new-ad-container">
-  <form>
-
+  <form action="/listings" method="POST">
     <div class="form-group">
+
       <label for="form-ad-title">Ad Title</label>
-      <input type="text" class="form-control" id="form-ad-title" placeholder="Ad Title">
+      <input name="title" type="text" class="form-control" id="form-ad-title" placeholder="Ad Title">
 
       <label for="form-description">Description</label>
-      <textarea class="form-control" id="form-description" placeholder="Describe your listing...">
+      <textarea name="description" class="form-control" id="form-description" placeholder="Describe your listing...">
       </textarea>
 
       <label for="form-price">Price</label>
-      <input type="number" class="form-control" id="form-price" placeholder="Enter price" min="0">
+      <input name="priceDollars" type="number" class="form-control" id="form-price" placeholder="Enter price" min="0">
 
-      <label class="my-1 mr-2" for="form-condition">Condition</label>
-      <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-        <option selected>Choose...</option>
-        <option value="1">New</option>
-        <option value="2">Used</option>
+      <label class="my-1 mr-2" for="form-category">Category</label>
+      <select name="category" class="custom-select my-1 mr-sm-2" id="form-category">
+        <option selected>Choose Category</option>
+        <option value="clothing">Clothing</option>
+        <option value="electronics">Electronics</option>
+        <option value="furniture">Furniture</option>
+        <option value="health and fitness">Health and Fitness</option>
+        <option value="real estate">Real Estate</option>
+        <option value="sports">Sports</option>
+        <option value="tools">Tools</option>
+        <option value="vehicle">Vehicle</option>
+        <option value="vehicle accessories">Vehicle Accessories</option>
       </select>
 
+      <label class="my-1 mr-2" for="form-street-address">Street Address</label>
+      <input name="streetAddress" type="text" class="form-control my-1 mr-sm-2" id="form-street-address" placeholder="Enter Street Address"></input>
 
-      <label class="my-1 mr-2" for="form-negotiable">Negotiable</label>
-      <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-        <option selected>Choose...</option>
-        <option value="1">Yes</option>
-        <option value="2">No</option>
+      <label class="my-1 mr-2" for="form-city">City</label>
+      <input name="city" type="text" class="form-control my-1 mr-sm-2" id="form-city" placeholder="Enter City"></input>
+
+      <label class="my-1 mr-2" for="form-province">Province/State</label>
+      <input name="province" type="text" class="form-control my-1 mr-sm-2" id="form-province" placeholder="Enter Province or State"></input>
+
+      <label class="my-1 mr-2" for="form-country">Country</label>
+      <select name="country" type="text" class="custom-select my-1 mr-sm-2" id="form-country">
+        <option selected>Choose Country</option>
+        <option value="Canada">Canada</option>
+        <option value="USA">USA</option>
       </select>
+
+      <label class="my-1 mr-2" for="form-postal-code">Postal/Zip Code</label>
+      <input name="postalCode" type="text" class="form-control my-1 mr-sm-2" id="form-postal-code" placeholder="Enter Postal Code or Zip Code"></input>
 
       <div class="form-group">
         <label for="form-image">Image file input (jpeg)</label>
         <input type="file" class="form-control-file " id="form-image">
       </div>
 
+      <button class="btn btn-primary btn-lg" type="submit">Submit</button>
 
     </div>
   </form>

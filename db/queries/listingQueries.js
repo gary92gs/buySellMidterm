@@ -56,8 +56,34 @@ const browseListings = (browseFilterObj) => {
     });
 };
 
-const createListing = (listingObj) => {
-  //inserts a new entry in the db's listing table
+//inserts a new entry in the db's listings tables
+const postNewListing = (listingObj) => {
+  const insertQuery = `
+    INSERT INTO listings (owner_id, title, description, price_cents, category, street_address, city, province, country, postal_code, status) VALUES
+    ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);
+  `;
+  const EscapeArray = [
+    listingObj.ownerId,
+    listingObj.title,
+    listingObj.description,
+    listingObj.price_cents,
+    listingObj.category,
+    listingObj.street_address,
+    listingObj.city,
+    listingObj.province,
+    listingObj.country,
+    listingObj.postal_code,
+    listingObj.status,
+  ];
+
+  return db
+    .query(insertQuery, EscapeArray)
+    .then(() => {
+      return Promise.resolve();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 //retrieves individual listing
@@ -93,4 +119,5 @@ const getAllListingImages = (listingId) => {
 module.exports = {
   browseListings,
   getListing,
+  postNewListing,
 };
