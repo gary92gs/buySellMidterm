@@ -64,9 +64,10 @@ const createListing = (listingObj) => {
 const getListing = (listingId) => {
   return db
     .query(`
-      SELECT listing_images.image_path, listings.id, title, price_cents, description
+      SELECT listing_images.image_path, listings.id, users.email, title, price_cents, description
       FROM listings
       JOIN listing_images ON listings.id = listing_id
+      JOIN users ON listings.owner_id = users.id
       WHERE listings.id = $1;
     `, [listingId])
     .then((result) => {
