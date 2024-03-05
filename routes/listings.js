@@ -33,27 +33,23 @@ router.get('/new', (req, res) => {
 router.get('/:id', (req, res) => {
   //necessary for banner (it references cookies)
   const filterObj = {
-    category: req.cookies.category,
     userSearch: req.cookies.userSearch,
     city: req.cookies.city,
     province: req.cookies.province,
     country: req.cookies.country,
-    currentPage: req.cookies.currentPage || 1,
   };
 
   const requestedId = parseInt(req.params.id);
-  let uniqueListing;
-  for (const listing of listings) {
-    if (listing.id === requestedId) {
-      uniqueListing = listing;
-      break;
-    }
-  }
-  if (!uniqueListing) {
-    return res.status(404).send('Listing not found');
-  }
-  // res.json(uniqueListing);
-  res.render('listings_show', {filterObj});
+  console.log(requestedId);
+
+  dblistings
+    .getListing(requestedId)
+    .then((listing) => {
+      res.render('listings_show', { listing, filterObj });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 // !! TEST WHEN DB GOES LIVE !!

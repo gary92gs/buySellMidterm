@@ -60,8 +60,21 @@ const createListing = (listingObj) => {
   //inserts a new entry in the db's listing table
 };
 
+//retrieves individual listing
 const getListing = (listingId) => {
-  //retrieves individual listing
+  return db
+    .query(`
+      SELECT listing_images.image_path, listings.id, title, price_cents, description
+      FROM listings
+      JOIN listing_images ON listings.id = listing_id
+      WHERE listings.id = $1;
+    `, [listingId])
+    .then((result) => {
+      return Promise.resolve(result.rows);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 const updateListing = (listingId, updatedFieldsObj) => {
@@ -78,5 +91,6 @@ const getAllListingImages = (listingId) => {
 };
 
 module.exports = {
-  browseListings
+  browseListings,
+  getListing,
 };
