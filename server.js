@@ -31,7 +31,6 @@ app.use(
   /* express.static(__dirname + '/styles') */
 );
 app.use(express.static('public'));
-// app.use('/db/ad_images', express.static(path.join(__dirname, 'db', 'ad_images')));
 app.use(cookieParser());
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
