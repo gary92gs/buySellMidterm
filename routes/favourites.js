@@ -69,10 +69,8 @@ const dbFavourites = require('../db/queries/favouritesQueries')
 // });
 
 router.get('/', (req, res) => {
-  console.log('req.cookies', req.cookies);
-  console.log('UserId from cookie:', req.cookies.userId);
+  
   const userId = req.cookies.userId;
-  console.log('Value in userId variable', userId);
   
   if(!userId) {
     return res.status(400).send('Please Login to view Favourites');
