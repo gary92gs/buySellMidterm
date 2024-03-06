@@ -77,6 +77,8 @@ router.get('/', (req, res) => {
   }
 
   const filterObj = {
+    priceCentsMin: Number(req.cookies.priceMin + '00'),
+    priceCentsMax: Number(req.cookies.priceMax + '00'),
     userSearch: req.cookies.userSearch,
     city: req.cookies.city,
     province: req.cookies.province,
