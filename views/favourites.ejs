@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
+  <!-- <link rel="stylesheet" href="/styles/layout.css" /> -->
   <link rel="stylesheet" href="/styles/favourites.css" />
 
 
@@ -55,38 +55,18 @@
       </tr>
     </thead>
     <tbody>
-
+ <!-- Responsive Template -->
+      <% favouriteListingsArr.forEach(function(listing) { %>
       <tr>
         <td class="item-image">
-          <img src="https://thumb.ac-illust.com/b3/b323a5a6e1a5a1d98aa4c86fb9feb123_t.jpeg" alt="White Goose">
+          <img src="<%= listing.url %>" alt="White Goose">
         </td>
-        <td class="item-title">Duck</td>
-        <td class="price">$1000</td>
+        <td class="item-title"><%= listing.title %></td>
+        <td class="price"><%= listing.price_cents %></td>
         <td class="posted-on">02/28/24</td>
         <td class="delete-item"><button type="button" class="btn btn-outline-danger">Delete</button></td>
       </tr>
-
-      <tr>
-        <td class="item-image">
-          <img src="https://www.allaboutbirds.org/guide/assets/photo/295417571-480px.jpg" alt="White Goose">
-        </td>
-        <td class="item-title">Goose</td>
-        <td class="price">$20</td>
-        <td class="posted-on">Date</td>
-        <td class="delete-item"><button type="button" class="btn btn-danger">Delete</button></td>
-      </tr>
-
-<!-- Responsive Template -->
-      <tr>
-        <td class="item-image">
-          <img src="<%= imageUrl %>" alt="White Goose">
-        </td>
-        <td class="item-title"><%= title %></td>
-        <td class="price"><%= price %></td>
-        <td class="posted-on">02/28/24</td>
-        <td class="delete-item"><button type="button" class="btn btn-outline-danger">Delete</button></td>
-      </tr>
-
+      <% }); %>
     </tbody>
   </table>
 </div>
