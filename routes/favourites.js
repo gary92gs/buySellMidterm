@@ -69,7 +69,7 @@ const dbFavourites = require('../db/queries/favouritesQueries')
 // });
 
 router.get('/', (req, res) => {
-  
+
   const userId = req.cookies.userId;
   
   if(!userId) {
@@ -86,6 +86,7 @@ router.get('/', (req, res) => {
   dbFavourites
   .browseFavourites(userId)
   .then((favouriteListingsArr) => {
+    console.log(favouriteListingsArr);
     res.render('favourites', { filterObj, favouriteListingsArr });
   })
   .catch(error => {
@@ -93,5 +94,19 @@ router.get('/', (req, res) => {
     res.status(500).send('Internal Server Error');
   })
 })
+
+router.delete('/delete', function(req, res) {
+  const listingId = req.body.listingId;
+console.log('request body:', req.body)
+  dbFavourites
+  .removeFavourite(listingId)
+    .then((removedListing) => {
+      res.status(200).send(`Successfully deleted ${removedListing} favorite(s)`);
+    })
+    .catch((error) => {
+      console.error('Error removing favorite:', error);
+      res.status(500).send('Failed to remove favorite');
+    });
+});
 
 module.exports = router;
