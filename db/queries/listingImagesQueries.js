@@ -2,20 +2,19 @@ const db = require('../connection.js');
 
 //inserts multiple images belonging to a single listing into listing_images table
 const postListingImages = (listingId, imagePathsArray) => {
-  const craftedQuery = `
-    INSERT INTO listing_images (listing_id, image_path) VALUES
-  `;
+  let craftedQuery = `INSERT INTO listing_images (listing_id, image_path) VALUES `;
+  let craftedQueryArray = [];
 
   //crafts query based on the amount of image paths provided, then appends ';' for sql syntax
   for (const imagePath of imagePathsArray) {
-    craftedQuery += `(${listingId, imagePath})`
+    craftedQueryArray.push(`(${listingId}, '${imagePath}')`)
   }
-  craftedQuery += ';';
-
+  craftedQuery += craftedQueryArray.join(', ') + ';';
+  console.log(craftedQuery);
   return db
     .query(craftedQuery)
-    .then(() => {
-      return Promise.resolve();
+    .then((result) => {
+      return Promise.resolve(result);
     })
     .catch((err) => {
       console.log(err);

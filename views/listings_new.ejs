@@ -39,7 +39,7 @@
 
 <!------------ Main Container ---------------->
 <div class="new-ad-container">
-  <form action="/listings" method="POST">
+  <form action="/listings" method="POST" enctype="multipart/form-data">
     <div class="form-group">
 
       <label for="form-ad-title">Ad Title</label>
@@ -87,7 +87,7 @@
 
       <div class="form-group">
         <label for="form-image">Image file input (jpeg)</label>
-        <input type="file" class="form-control-file " id="form-image">
+        <input multiple name="listingImages" type="file" class="form-control-file " id="form-image">
       </div>
 
       <button class="btn btn-primary btn-lg" type="submit">Submit</button>

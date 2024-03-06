@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
+//library for multimedia data from html forms
+const multer = require('multer');
+//middleware for encoded multimedia data (similar to express.urlencoded)
+const upload = multer({ dest: 'public/ad_images/uploads' });
+
 const dblistings = require('./../db/queries/listingQueries');
 const dbImages = require('./../db/queries/listingImagesQueries');
 
@@ -62,8 +67,11 @@ router.get('/:id', (req, res) => {
 });
 
 //POST/CREATE NEW LISTING
-router.post('/', (req, res) => {
-  console.log('req.cookies', req.cookies);
+router.post('/', upload.array('listingImages'), (req, res) => {
+
+  //extract image paths into an array for inserting into
+  const imagePathsArray = req.files.map(file => file.path);
+
 
   //check if user is logged in (only logged-in/registered users can post ads)
 
@@ -81,21 +89,18 @@ router.post('/', (req, res) => {
     postalCode: req.body.postalCode,
     status: true,
   };
-  console.log('listingObj', listingObj);
 
   dblistings
     .postNewListing(listingObj)
-    .then((result) => {
-      console.log(result);
-      // dbImages.postListingImages()
+    .then((newListingId) => {
+      return dbImages.postListingImages(newListingId, imagePathsArray);
     })
-    // .then(() => {
-
-    // })
+    .then(() => {
+      return res.redirect('/listings')
+    })
     .catch((err) => {
       console.log(err);
     });
-  res.redirect('/listings');
 });
 
 // * ROUTE TO LISTINGS/:ID *
