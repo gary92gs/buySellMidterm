@@ -8,7 +8,7 @@ $(document).ready(function() {
 
   function initializeSlider() { // Sets the initial state of the image slider
     if (slides.length > 0) { // If there are any photos display them using addClass
-      slides.eq(slideIndex).addClass("displaySlide");
+      slides.first().addClass("displaySlide");
     }
   }
 

@@ -9,7 +9,7 @@ body {
 
 .specific-ad-container {
   background:rgb(255, 255, 255);
-  max-width: 700px;
+  max-width: 800px;
   max-height: 800px;
   margin: auto;
   margin-top: 75px;
@@ -20,7 +20,6 @@ body {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-
 }
 
 .specific-ad-container h4 { /* Listing title */
@@ -52,19 +51,20 @@ body {
   overflow: hidden;
 }
 
-.specific-ad-image {
+.specific-ad-thumbnail {
   max-height: 300px;
   display: none;
 }
-.specific-ad-image img{
-  width: 400px;
-  height: 400px;
+.specific-ad-thumbnail img{
+  max-width: 100%; /* Ensures the image doesn't exceed its container */
+  max-height: 100%;
   //overflow: hidden; /* So that the image doesn't overflow the container */
 }
 
 img.displaySlide {
   display: block;
 }
+
 .slider i { /* Pointer Icons (Prev and Next)*/
  padding: 10px;
  cursor: pointer;
