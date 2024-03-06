@@ -29,8 +29,25 @@ const addFavourite = (userId, listingId) => {
   //insert new entry into favourites table
 }
 
-const removeFavourite = (userId,listingId) => {
-  //find favourites entry and delete it (probably easiest to retrieve userID and listingID rather than favouritesId)
-}
+const removeFavourite = (listingId) => {
+  return db
+    .query(`
+      DELETE 
+      FROM favourites 
+      WHERE listing_id = $1
+    `, [listingId])
+    .then(result => {
+      if (result.rowCount > 0) {
+        return Promise.resolve(result.rowCount); 
+      }
+      return Promise.reject(new Error('Listing not found in favourites' + listingId));
+    })
+    .catch(error => {
+      return Promise.reject(error); 
+    });
+};
 
-module.exports = { browseFavourites }
+module.exports = { 
+  browseFavourites,
+  removeFavourite
+ }
