@@ -41,7 +41,7 @@
       <div class="image-slider">
         <i class="fas fa-arrow-left prev"></i>
         <% listingArray.forEach(element => { %>
-          <img src="<%= element.image_path %>" alt="other duck" class="specific-ad-thumbnail">
+          <img src="<%= element.image_path %>" alt="<%= element.title %>" class="specific-ad-thumbnail">
         <% }) %>
         <i class="fas fa-arrow-right next"></i>
       </div>

@@ -4,7 +4,7 @@ const router = express.Router();
 //library for multimedia data from html forms
 const multer = require('multer');
 //middleware for encoded multimedia data (similar to express.urlencoded)
-const upload = multer({ dest: 'public/ad_images/uploads' });
+const upload = multer({ dest: 'public/ad_images_uploaded' });
 
 const dblistings = require('./../db/queries/listingQueries');
 const dbImages = require('./../db/queries/listingImagesQueries');
@@ -69,8 +69,6 @@ router.get('/:id', (req, res) => {
 //POST/CREATE NEW LISTING
 router.post('/', upload.array('listingImages'), (req, res) => {
 
-  //extract image paths into an array for inserting into
-  const imagePathsArray = req.files.map(file => file.path);
 
 
   //check if user is logged in (only logged-in/registered users can post ads)
@@ -89,10 +87,16 @@ router.post('/', upload.array('listingImages'), (req, res) => {
     postalCode: req.body.postalCode,
     status: true,
   };
-
-  dblistings
+  //extract image paths into an array for inserting into
+  console.log('req.files',req.files);
+  const imagePathsArray = req.files.map(file => file.path.slice(6));
+  console.log('imagePathsArray',imagePathsArray);
+  //query the database to insert into listings, then into
+  return dblistings
     .postNewListing(listingObj)
+    //newListingId is the brand new listing that was inserted into listings table
     .then((newListingId) => {
+      //posts new
       return dbImages.postListingImages(newListingId, imagePathsArray);
     })
     .then(() => {
