@@ -33,6 +33,10 @@ router.get('/', (req, res) => {
 
 // GET FORM PAGE FOR CREATE NEW LISTING
 router.get('/new', (req, res) => {
+  //check if user is logged in (only logged-in/registered users can post ads)
+  if (!req.cookies.userId) {
+    return res.send('You must be logged in to post ads');
+  }
   //necessary for banner (it references cookies)
   const filterObj = {
     userSearch: req.cookies.userSearch,
@@ -40,7 +44,6 @@ router.get('/new', (req, res) => {
     province: req.cookies.province,
     country: req.cookies.country,
   };
-
   res.render('listings_new', { filterObj });
 });
 
@@ -68,11 +71,10 @@ router.get('/:id', (req, res) => {
 
 //POST/CREATE NEW LISTING
 router.post('/', upload.array('listingImages'), (req, res) => {
-
-
-
   //check if user is logged in (only logged-in/registered users can post ads)
-
+  if (!req.cookies.userId) {
+    return res.send('You must be logged in to post ads');
+  }
   //grab listing details required for posting to listings table (to be passed as arguement)
   const listingObj = {
     ownerId: req.cookies.userId,
@@ -88,9 +90,9 @@ router.post('/', upload.array('listingImages'), (req, res) => {
     status: true,
   };
   //extract image paths into an array for inserting into
-  console.log('req.files',req.files);
+  console.log('req.files', req.files);
   const imagePathsArray = req.files.map(file => file.path.slice(6));
-  console.log('imagePathsArray',imagePathsArray);
+  console.log('imagePathsArray', imagePathsArray);
   //query the database to insert into listings, then into
   return dblistings
     .postNewListing(listingObj)
@@ -100,7 +102,7 @@ router.post('/', upload.array('listingImages'), (req, res) => {
       return dbImages.postListingImages(newListingId, imagePathsArray);
     })
     .then(() => {
-      return res.redirect('/listings')
+      return res.redirect('/listings');
     })
     .catch((err) => {
       console.log(err);
