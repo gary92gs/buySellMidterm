@@ -41,11 +41,11 @@
       <div class="slider">
          <!-- Left/Prev Arrow -->
         <i class="fas fa-arrow-left prev" onclick="prevSlide()"></i>
-        
+
           <!-- Listing Images-->
         <div class="slides">
         <% listingArray.forEach(element => { %>
-          <img src="<%= element.image_path %>" alt="<%= listingArray[0].title %>" class="specific-ad-image slide">
+          <img src="<%= element.image_path %>" alt="<%= element.title %>" class="specific-ad-thumbnail">
         <% }) %>
         </div>
 

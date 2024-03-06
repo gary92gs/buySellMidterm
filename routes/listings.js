@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
+//library for multimedia data from html forms
+const multer = require('multer');
+//middleware for encoded multimedia data (similar to express.urlencoded)
+const upload = multer({ dest: 'public/ad_images_uploaded' });
+
 const dblistings = require('./../db/queries/listingQueries');
 const dbImages = require('./../db/queries/listingImagesQueries');
 
@@ -28,6 +33,10 @@ router.get('/', (req, res) => {
 
 // GET FORM PAGE FOR CREATE NEW LISTING
 router.get('/new', (req, res) => {
+  //check if user is logged in (only logged-in/registered users can post ads)
+  if (!req.cookies.userId) {
+    return res.send('You must be logged in to post ads');
+  }
   //necessary for banner (it references cookies)
   const filterObj = {
     userSearch: req.cookies.userSearch,
@@ -35,7 +44,6 @@ router.get('/new', (req, res) => {
     province: req.cookies.province,
     country: req.cookies.country,
   };
-
   res.render('listings_new', { filterObj });
 });
 
@@ -62,11 +70,11 @@ router.get('/:id', (req, res) => {
 });
 
 //POST/CREATE NEW LISTING
-router.post('/', (req, res) => {
-  console.log('req.cookies', req.cookies);
-
+router.post('/', upload.array('listingImages'), (req, res) => {
   //check if user is logged in (only logged-in/registered users can post ads)
-
+  if (!req.cookies.userId) {
+    return res.send('You must be logged in to post ads');
+  }
   //grab listing details required for posting to listings table (to be passed as arguement)
   const listingObj = {
     ownerId: req.cookies.userId,
@@ -81,21 +89,28 @@ router.post('/', (req, res) => {
     postalCode: req.body.postalCode,
     status: true,
   };
-  console.log('listingObj', listingObj);
-
-  dblistings
+  //extract image paths into an array for inserting into
+  console.log('req.files', req.files);
+  const imagePathsArray = req.files.map(file => file.path.slice(6));
+  console.log('imagePathsArray', imagePathsArray);
+  //query the database to insert into listings, then into
+  return dblistings
     .postNewListing(listingObj)
-    .then((result) => {
-      console.log(result);
-      // dbImages.postListingImages()
+    //newListingId is the brand new listing that was inserted into listings table
+    .then((newListingId) => {
+      //if user did not provide an image, put 'no-image' image into imageArray before trying to insert into listing_images table
+      if (!imagePathsArray.length){
+        imagePathsArray.push('/website_images/no-image.png')
+      }
+      //posts user-provided new images into listing_images table
+      return dbImages.postListingImages(newListingId, imagePathsArray);
     })
-    // .then(() => {
-
-    // })
+    .then(() => {
+      return res.redirect('/listings');
+    })
     .catch((err) => {
       console.log(err);
     });
-  res.redirect('/listings');
 });
 
 // * ROUTE TO LISTINGS/:ID *

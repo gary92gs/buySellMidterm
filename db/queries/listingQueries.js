@@ -60,7 +60,8 @@ const browseListings = (browseFilterObj) => {
 const postNewListing = (listingObj) => {
   const insertQuery = `
     INSERT INTO listings (owner_id, title, description, price_cents, category, street_address, city, province, country, postal_code, status) VALUES
-    ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);
+    ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+    RETURNING id;
   `;
   const EscapeArray = [
     listingObj.ownerId,
@@ -79,7 +80,7 @@ const postNewListing = (listingObj) => {
   return db
     .query(insertQuery, EscapeArray)
     .then((result) => {
-      return Promise.resolve(result);
+      return Promise.resolve(result.rows[0].id);
     })
     .catch((err) => {
       console.log(err);

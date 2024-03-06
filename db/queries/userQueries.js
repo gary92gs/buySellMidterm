@@ -1,7 +1,7 @@
 const db = require('../connection');
 
+//confirms user is logged in before performing user-gated operations
 const getUserById = (userId) => {
-  //confirms user is logged in before performing user-gated operations
   return db
     .query(`
       SELECT *
@@ -14,7 +14,6 @@ const getUserById = (userId) => {
     .catch((err) => {
       console.log(err);
     });
-
 };
 
 
