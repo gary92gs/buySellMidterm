@@ -24,8 +24,10 @@
   <!-- <link rel="stylesheet" href="/styles/layout.css" /> -->
   <link rel="stylesheet" href="/styles/favourites.css" />
 
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-  <script src="/vendor/jquery-3.0.0.js"></script>
+  <!-- Custom Scripts -->
   <script defer src="/scripts/app.js"></script>
 </head>
 
@@ -43,33 +45,34 @@
     My Favourites
   </h3>
 
-<div class="table-container">
-  <table class="table text-center">
-    <thead class="table-light">
-      <tr class="text-center">
-        <th scope="col">Image</th>
-        <th scope="col">Title</th>
-        <th scope="col">Price</th>
-        <th scope="col">Posted On</th>
-        <th scope="col">Delete</th>
-      </tr>
-    </thead>
-    <tbody>
- <!-- Responsive Template -->
-      <% favouriteListingsArr.forEach(function(listing) { %>
-      <tr>
-        <td class="item-image">
-          <img src="<%= listing.url %>" alt="White Goose">
-        </td>
-        <td class="item-title"><%= listing.title %></td>
-        <td class="price"><%= listing.price_cents %></td>
-        <td class="posted-on">02/28/24</td>
-        <td class="delete-item"><button type="button" class="btn btn-outline-danger">Delete</button></td>
-      </tr>
-      <% }); %>
-    </tbody>
-  </table>
-</div>
+  <div class="table-container">
+    <table class="table text-center">
+      <thead class="table-light">
+        <tr class="text-center">
+          <th scope="col">Image</th>
+          <th scope="col">Title</th>
+          <th scope="col">Price</th>
+          <th scope="col">Posted On</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Responsive Template -->
+        <% favouriteListingsArr.forEach(function(listing) { %>
+        <tr data-listing-id="<%= listing.id %>">
+          <td class="item-image">
+            <img src="<%= listing.url %>" alt="White Goose">
+          </td>
+          <td class="item-id"><%= listing.id %></td>
+          <td class="item-title"><%= listing.title %></td>
+          <td class="price"><%= listing.price_cents %></td>
+          <td class="posted-on">02/28/24</td>
+          <td class="delete-item"><button type="button" class="btn btn-outline-danger delete-button">Delete</button></td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
 
   <hr class="hr hr-blurry" /> <!--Horizontal Spacing -->
   <hr class="hr hr-blurry" /> <!--Horizontal Spacing -->
@@ -79,12 +82,6 @@
 
 
 <!---------------------- Bootstrap JS --------------------------->
-
-  <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
