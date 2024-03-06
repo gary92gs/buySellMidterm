@@ -98,7 +98,11 @@ router.post('/', upload.array('listingImages'), (req, res) => {
     .postNewListing(listingObj)
     //newListingId is the brand new listing that was inserted into listings table
     .then((newListingId) => {
-      //posts new
+      //if user did not provide an image, put 'no-image' image into imageArray before trying to insert into listing_images table
+      if (!imagePathsArray.length){
+        imagePathsArray.push('/website_images/no-image.png')
+      }
+      //posts user-provided new images into listing_images table
       return dbImages.postListingImages(newListingId, imagePathsArray);
     })
     .then(() => {
