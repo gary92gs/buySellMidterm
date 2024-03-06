@@ -9,10 +9,13 @@ const upload = multer({ dest: 'public/ad_images_uploaded' });
 const dblistings = require('./../db/queries/listingQueries');
 const dbImages = require('./../db/queries/listingImagesQueries');
 
-//RETRIEVE MANY LISTINGS BASED ON USER-SPECIFIED SEARCH PARAMETERS
+//BROWSE/RETRIEVE MANY LISTINGS BASED ON USER-SPECIFIED SEARCH PARAMETERS
 router.get('/', (req, res) => {
+  console.log('req.cookies', req.cookies);
   //grab search parameters from cookies (will be passed into browseListings query)
   const filterObj = {
+    priceCentsMin: Number(req.cookies.priceMin + '00'),
+    priceCentsMax: Number(req.cookies.priceMax + '00'),
     category: req.cookies.category,
     userSearch: req.cookies.userSearch,
     city: req.cookies.city,
@@ -20,6 +23,7 @@ router.get('/', (req, res) => {
     country: req.cookies.country,
     currentPage: req.cookies.currentPage || 1,
   };
+  console.log('filterObj', filterObj);
   //query the database and render page based on query-results
   dblistings
     .browseListings(filterObj)
@@ -39,6 +43,8 @@ router.get('/new', (req, res) => {
   }
   //necessary for banner (it references cookies)
   const filterObj = {
+    priceMin: req.cookies.priceMin,
+    priceMax: req.cookies.priceMax,
     userSearch: req.cookies.userSearch,
     city: req.cookies.city,
     province: req.cookies.province,
@@ -51,6 +57,8 @@ router.get('/new', (req, res) => {
 router.get('/:id', (req, res) => {
   //necessary for banner (it references cookies)
   const filterObj = {
+    priceCentsMin: Number(req.cookies.priceMin + '00'),
+    priceCentsMax: Number(req.cookies.priceMax + '00'),
     userSearch: req.cookies.userSearch,
     city: req.cookies.city,
     province: req.cookies.province,
@@ -99,8 +107,8 @@ router.post('/', upload.array('listingImages'), (req, res) => {
     //newListingId is the brand new listing that was inserted into listings table
     .then((newListingId) => {
       //if user did not provide an image, put 'no-image' image into imageArray before trying to insert into listing_images table
-      if (!imagePathsArray.length){
-        imagePathsArray.push('/website_images/no-image.png')
+      if (!imagePathsArray.length) {
+        imagePathsArray.push('/website_images/no-image.png');
       }
       //posts user-provided new images into listing_images table
       return dbImages.postListingImages(newListingId, imagePathsArray);
@@ -113,23 +121,5 @@ router.post('/', upload.array('listingImages'), (req, res) => {
     });
 });
 
-// * ROUTE TO LISTINGS/:ID *
-
-// router.get('/:id', (req, res) => {
-//   const requestedId = parseInt(req.params.id);
-//   db.query('SELECT * FROM listings WHERE id = $1', [requestedId])
-//     .then((result) => {
-//       if (result.rows.length > 0) {
-//         const uniqueListing = result.rows[0];
-//         return res.render('tbd', { listing: uniqueListing });
-//       }
-//       console.log('Listing not found');
-//       return res.status(404).send("Please try again")
-//     })
-//     .catch((error) => {
-//       console.error('Error fetching listing:', error);
-//       return res.status(500).send("Internal Server Error")
-//     });
-// });
 
 module.exports = router;

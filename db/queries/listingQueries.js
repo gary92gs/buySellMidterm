@@ -34,6 +34,18 @@ const browseListings = (browseFilterObj) => {
         queryCraftingArray[3] = `OFFSET ($${queryEscapeArray.length} - 1) * 12`;
         continue;
       }
+      //ensures priceMin is treated as a number and uses mathematical operator
+      if (searchParameter === 'priceCentsMin') {
+        queryEscapeArray.push(browseFilterObj[searchParameter]);
+        whereCraftingArray.push(`price_cents >= $${queryEscapeArray.length}`);
+        continue;
+      }
+      //ensures priceMin is treated as a number and uses mathematical operator
+      if (searchParameter === 'priceCentsMax') {
+        queryEscapeArray.push(browseFilterObj[searchParameter]);
+        whereCraftingArray.push(`price_cents <= $${queryEscapeArray.length}`);
+        continue;
+      }
       queryEscapeArray.push(browseFilterObj[searchParameter]);
       whereCraftingArray.push(`${searchParameter} = $${queryEscapeArray.length}`);
     }
@@ -45,6 +57,8 @@ const browseListings = (browseFilterObj) => {
   }
   //consolidate queryCraftingArray into a finalized query string
   const craftedQuery = queryCraftingArray.filter(element => element !== '').join(' ') + ';';
+
+  console.log(craftedQuery);
   //query database and return data to web server
   return db
     .query(craftedQuery, queryEscapeArray)

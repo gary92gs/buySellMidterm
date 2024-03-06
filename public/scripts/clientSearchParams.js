@@ -63,4 +63,22 @@ $(document).ready(function() {
     //reload page
     window.location.href = '/listings';
   });
+  $('#setPriceRangeForm').on('submit', function(e) {
+    e.preventDefault(); //prevents form from submitting on submit event
+    //reset priceMin and priceMax cookies
+    document.cookie = 'priceMin=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+    document.cookie = 'priceMax=; expires=Thu, 01 Jan 1970 00:00:00 UTC';
+    //grab price min and price max values
+    const priceRangesArray = $(this).children('input');
+    //if priceMin or priceMax parameters submitted by user, then set corresponding cookie to that value
+    if($(priceRangesArray[0]).val()){
+      document.cookie = `priceMin=${$(priceRangesArray[0]).val()}`;
+    }
+    if($(priceRangesArray[1]).val()){
+      document.cookie = `priceMax=${$(priceRangesArray[1]).val()}`;
+    }
+    //reload page
+    window.location.href = '/listings';
+  });
+
 });
