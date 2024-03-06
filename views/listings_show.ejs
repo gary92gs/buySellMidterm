@@ -47,7 +47,7 @@
       </div>
 
           <div class="specific-ad-caption">
-            <h4 class="specific-ad-price">Price: <%= listingArray[0].price_cents %></h4>
+            <h4 class="specific-ad-price">Price: <%= '$' + listingArray[0].price_cents/100 + '.00' %></h4>
             <p><%= listingArray[0].description %></p>
 
             <p class="specific-ad-buttons">

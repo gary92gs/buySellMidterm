@@ -27,6 +27,12 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Set Location</button>
     </form>
 
+    <form id="setPriceRangeForm" class="form-inline my-2 my-lg-0" action="/listings" method="GET">
+      <input class="form-control mr-sm-2" type="text" placeholder="Min Price ($)" value="<%= ((filterObj.priceCentsMin/100) ? filterObj.priceCentsMin/100 : '') %>" aria-label="Search" name="priceMin">
+      <input class="form-control mr-sm-2" type="text" placeholder="Max Price ($)" value="<%= ((filterObj.priceCentsMax/100) ? filterObj.priceCentsMax/100 : '') %>" aria-label="Search" name="priceMax">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Set Price Range</button>
+    </form>
+
     <form id="userSearchForm" class="form-inline my-2 my-lg-0" action="/listings" method="GET">
       <input class="form-control mr-sm-2" type="text" placeholder="Search" value="<%= filterObj.userSearch %>" aria-label="Search" name="userSearch">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
