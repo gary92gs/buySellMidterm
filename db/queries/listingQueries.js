@@ -24,7 +24,7 @@ const browseListings = (browseFilterObj) => {
       //ensure userSearch is applied to the listings title column and it is a partial string search (ie. non-exact match)
       if (searchParameter === 'userSearch') {
         queryEscapeArray.push(`%${browseFilterObj[searchParameter]}%`);
-        whereCraftingArray.push(`title LIKE $${queryEscapeArray.length}`);
+        whereCraftingArray.push(`title LIKE $${queryEscapeArray.length} OR description LIKE $${queryEscapeArray.length}`);
         continue;
       }
       //ensure currentPage is applied to the id
@@ -32,6 +32,18 @@ const browseListings = (browseFilterObj) => {
         queryEscapeArray.push(browseFilterObj[searchParameter]);
         // apply to queryCraftingArray immediately, because it is not part of the where statement
         queryCraftingArray[3] = `OFFSET ($${queryEscapeArray.length} - 1) * 12`;
+        continue;
+      }
+      //ensures priceMin is treated as a number and uses mathematical operator
+      if (searchParameter === 'priceCentsMin') {
+        queryEscapeArray.push(browseFilterObj[searchParameter]);
+        whereCraftingArray.push(`price_cents >= $${queryEscapeArray.length}`);
+        continue;
+      }
+      //ensures priceMin is treated as a number and uses mathematical operator
+      if (searchParameter === 'priceCentsMax') {
+        queryEscapeArray.push(browseFilterObj[searchParameter]);
+        whereCraftingArray.push(`price_cents <= $${queryEscapeArray.length}`);
         continue;
       }
       queryEscapeArray.push(browseFilterObj[searchParameter]);
@@ -45,6 +57,8 @@ const browseListings = (browseFilterObj) => {
   }
   //consolidate queryCraftingArray into a finalized query string
   const craftedQuery = queryCraftingArray.filter(element => element !== '').join(' ') + ';';
+
+  console.log(craftedQuery);
   //query database and return data to web server
   return db
     .query(craftedQuery, queryEscapeArray)
