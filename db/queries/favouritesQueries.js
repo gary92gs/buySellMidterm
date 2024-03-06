@@ -4,8 +4,8 @@ const db = require('../connection');
 const browseFavourites = (userId) => {
   return db
   .query(`
-    SELECT listings.id 
-    AS favourite_listings, listings.title, listings.price_cents, sub_listing_images.image_path 
+    SELECT listings.id, 
+    listings.title, listings.price_cents, sub_listing_images.image_path 
     AS url
     FROM favourites
     JOIN listings ON listings.id = favourites.listing_id
