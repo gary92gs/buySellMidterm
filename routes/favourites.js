@@ -77,12 +77,10 @@ router.get('/', (req, res) => {
   }
 
   const filterObj = {
-    category: req.cookies.category,
     userSearch: req.cookies.userSearch,
     city: req.cookies.city,
     province: req.cookies.province,
     country: req.cookies.country,
-    currentPage: req.cookies.currentPage || 1,
   };
 
   dbFavourites
