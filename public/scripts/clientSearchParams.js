@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // Client facing scripts here
 
 //NOTE: Needs to be moved into cookiesManager.js OR something similar

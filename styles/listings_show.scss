@@ -3,35 +3,30 @@ body {
 }
 
 .listings-header {
-  padding-top: 100px;
+ // padding-top: 100px;
   text-align: center;
 }
 
 .specific-ad-container {
+  background:rgb(255, 255, 255);
   max-width: 700px;
+  max-height: 800px;
   margin: auto;
+  margin-top: 75px;
   //padding: 50px;
   border: 1px solid #ccc;
   border-radius: 5px;
-
-  background:rgb(255, 255, 255);
+  padding:  50px 50px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 
 }
-.specific-ad-thumbnail img{
-  width: 400px;
-  height: 400px;
-  //overflow: hidden; /* So that the image doesn't overflow the container */
-}
 
-
-.specific-ad-container {
-  padding:  75px 100px;
-}
-
-.specific-ad-container h4 {
+.specific-ad-container h4 { /* Listing title */
   padding-top: 20px;
 }
-.specific-ad-container p {
+.specific-ad-container p { /* Listing description */
   padding-top: 20px;
 }
 
@@ -40,24 +35,43 @@ body {
   justify-content: space-between;
 }
 
-.specific-ad-caption {
+.specific-ad-caption { /* Container for price,contact seller,fav button */
   background-color: #f2f2f2;
   border-radius: 10px; /* Rounded edges */
   padding: 20px;
   margin: 20px;
 }
 
-.image-slider {
+.slider { /* Image slider container*/
   position: relative;
   display: inline-block;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
 }
 
-.image-slider i { /* Pointer Icons*/
+.specific-ad-image {
+  max-height: 300px;
+  display: none;
+}
+.specific-ad-image img{
+  width: 400px;
+  height: 400px;
+  //overflow: hidden; /* So that the image doesn't overflow the container */
+}
+
+img.displaySlide {
+  display: block;
+}
+.slider i { /* Pointer Icons (Prev and Next)*/
  padding: 10px;
  cursor: pointer;
  font-size: 2rem;
 }
 
-.image-slider i:hover {
+.slider i:hover {
   color: #1f88ff;
 }
+
