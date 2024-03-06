@@ -24,7 +24,7 @@ const browseListings = (browseFilterObj) => {
       //ensure userSearch is applied to the listings title column and it is a partial string search (ie. non-exact match)
       if (searchParameter === 'userSearch') {
         queryEscapeArray.push(`%${browseFilterObj[searchParameter]}%`);
-        whereCraftingArray.push(`title LIKE $${queryEscapeArray.length}`);
+        whereCraftingArray.push(`title LIKE $${queryEscapeArray.length} OR description LIKE $${queryEscapeArray.length}`);
         continue;
       }
       //ensure currentPage is applied to the id
