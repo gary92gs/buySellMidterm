@@ -18,7 +18,6 @@ const browseFavourites = (userId) => {
     WHERE user_id = $1;
   `, [userId])
   .then((result) => {
-    console.log('db result:', result.rows);
     return Promise.resolve(result.rows);
   })
   .catch((err) => {

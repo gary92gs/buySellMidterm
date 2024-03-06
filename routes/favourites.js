@@ -75,10 +75,20 @@ router.get('/', (req, res) => {
   if(!userId) {
     return res.status(400).send('Please Login to view Favourites');
   }
+
+  const filterObj = {
+    category: req.cookies.category,
+    userSearch: req.cookies.userSearch,
+    city: req.cookies.city,
+    province: req.cookies.province,
+    country: req.cookies.country,
+    currentPage: req.cookies.currentPage || 1,
+  };
+
   dbFavourites
   .browseFavourites(userId)
-  .then((result) => {
-    res.json(result);
+  .then((favouriteListingsArr) => {
+    res.render('favourites', { filterObj, favouriteListingsArr });
   })
   .catch(error => {
     console.error('Error browsing favourites:', error);
