@@ -77,7 +77,7 @@ router.get('/', (req, res) => {
   if(!userId) {
     return res.status(400).send('Please Login to view Favourites');
   }
-dbFavourites
+  dbFavourites
   .browseFavourites(userId)
   .then((result) => {
     res.json(result);
