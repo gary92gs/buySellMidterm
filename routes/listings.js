@@ -53,6 +53,36 @@ router.get('/new', (req, res) => {
   res.render('listings_new', { filterObj });
 });
 
+router.get('/myListings', (req, res) => {
+  //check if user is logged in (only logged-in/registered users can post ads)
+  if (!req.cookies.userId) {
+    return res.send('You must be logged in to post ads');
+  }
+  //necessary for banner (it references cookies)
+  const filterObj = {
+    priceCentsMin: Number(req.cookies.priceMin + '00'),
+    priceCentsMax: Number(req.cookies.priceMax + '00'),
+    userSearch: req.cookies.userSearch,
+    city: req.cookies.city,
+    province: req.cookies.province,
+    country: req.cookies.country,
+  };
+  //retrieve userId from cookie
+  const userId = req.cookies.userId;
+
+  return dblistings
+    .getListingsByUserId(userId)
+    .then((usersListingsArray) => {
+      const usersActiveListings = usersListingsArray.filter(listing => listing.status); //returns listings with active status?? (need to test)
+      const usersInactiveListings = usersListingsArray.filter(listing => !listing.status); //returns listings with inactive status?? (nned to test)
+      res.render('listings_user', { usersActiveListings, usersInactiveListings, filterObj });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+
 //RETRIEVE INDIVIDUAL LISTING
 router.get('/:id', (req, res) => {
   //necessary for banner (it references cookies)
@@ -67,7 +97,7 @@ router.get('/:id', (req, res) => {
   //grab id of individual listing that user clicked
   const requestedId = parseInt(req.params.id);
   //query the database for info regarding the user-selected listing
-  dblistings
+  return dblistings
     .getListing(requestedId)
     .then((listingArray) => {
       res.render('listings_show', { listingArray, filterObj });

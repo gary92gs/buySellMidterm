@@ -1,5 +1,30 @@
 const db = require('../connection');
 
+const getListingsByUserId = (userId) => {
+  //need to grab ALL LISTINGS that the user has created (active and inactive)
+  //order the results by active/inactive, then by id desc (will split the array into 2 => active + inactive) So that user can re-activate a listing if they want
+  const craftedQuery = `
+    SELECT listing_image.image_path, listings.id, title, price_cents, listings.status
+    FROM LISTINGS
+    JOIN (
+      SELECT DISTINCT ON (listing_id) listing_id, image_path
+      FROM listing_images
+      ORDER BY listing_id
+    ) AS listing_image ON listings.id = listing_image.listing_id
+    WHERE listings.owner_id = $1
+    ORDER BY listings.id DESC
+  `;
+  //query database
+  return db
+    .query(craftedQuery, [userId])
+    .then((result) => {
+      return Promise.resolve(result.rows);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 const browseListings = (browseFilterObj) => {
   //craft database query based on search parameters
   const queryCraftingArray = [
@@ -119,20 +144,13 @@ const getListing = (listingId) => {
     });
 };
 
-const updateListing = (listingId, updatedFieldsObj) => {
-  //receives object with fields that need to be updated
-};
-
 const deleteListing = (listingId) => {
   //search db listings table by listing_id
   //update status to False
 };
 
-const getAllListingImages = (listingId) => {
-  //retrieves all images for a specific listing to display
-};
-
 module.exports = {
+  getListingsByUserId,
   browseListings,
   getListing,
   postNewListing,

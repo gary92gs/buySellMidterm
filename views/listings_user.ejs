@@ -29,6 +29,7 @@
 
   <!-- Custom Scripts -->
   <script defer src="/scripts/app.js"></script>
+  <script defer src="/scripts/userListings.js"></script>
 </head>
 
 <body>
@@ -42,9 +43,9 @@
   <hr class="hr hr-blurry" /> <!--Horizontal Spacing -->
 
   <h3 class="pb-3 mb-4 favourites-header">
-    My Favourites
+    My Listings (active)
   </h3>
-
+<!-- USER'S NON-DELETED POSTS (ACTIVE) -->
   <div class="table-container">
     <table class="table text-center">
       <thead class="table-light">
@@ -57,16 +58,48 @@
       </thead>
       <tbody>
         <!-- Responsive Template -->
-        <% favouriteListingsArr.forEach(function(listing) { %>
+        <% usersActiveListings.forEach(listing => { %>
           <tr data-listing-id="<%= listing.id %>">
             <td class="item-image">
               <a href="/listings/<%= listing.id %>">
-                <img src="<%= listing.url %>" alt="<%= listing.title %>">
+                <img src="<%= listing.image_path %>" alt="<%= listing.title %>">
               </a>
             </td>
             <td class="item-title"><%= listing.title %></td>
             <td class="price"><%= '$' + listing.price_cents/100 + '.00' %></td>
-            <td class="delete-item"><button type="button" class="btn btn-outline-danger delete-button">Delete</button></td>
+            <td class="delete-item"><button type="button" class="btn btn-outline-danger">Delete</button></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+<!-- USER'S DELETED POSTS (INACTIVE) -->
+<h3 class="pb-3 mb-4 favourites-header">
+  My Deleted Listings
+</h3>
+  <div class="table-container">
+    <table class="table text-center">
+      <thead class="table-light">
+        <tr class="text-center">
+          <th scope="col">Image</th>
+          <th scope="col">Title</th>
+          <th scope="col">Price</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Responsive Template -->
+        <% usersInactiveListings.forEach(listing => { %>
+          <tr data-listing-id="<%= listing.id %>">
+            <td class="item-image">
+              <a href="/listings/<%= listing.id %>">
+                <img src="<%= listing.image_path %>" alt="<%= listing.title %>">
+              </a>
+            </td>
+            <td class="item-id"><%= listing.id %></td>
+            <td class="item-title"><%= listing.title %></td>
+            <td class="price"><%= '$' + listing.price_cents/100 + '.00' %></td>
+            <td class="activate-listing"><button type="button" class="btn btn-outline-success my-2 my-sm-0">Repost</button></td>
           </tr>
         <% }); %>
       </tbody>
