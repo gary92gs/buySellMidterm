@@ -61,12 +61,14 @@
         <% favouriteListingsArr.forEach(function(listing) { %>
         <tr data-listing-id="<%= listing.id %>">
           <td class="item-image">
-            <img src="<%= listing.url %>" alt="White Goose">
+            <a href="/listings/<%= listing.id %>">
+              <img src="<%= listing.url %>" alt="White Goose">
+            </a>
           </td>
           <td class="item-id"><%= listing.id %></td>
           <td class="item-title"><%= listing.title %></td>
           <td class="price"><%= listing.price_cents %></td>
-          <td class="posted-on">02/28/24</td>
+
           <td class="delete-item"><button type="button" class="btn btn-outline-danger delete-button">Delete</button></td>
         </tr>
         <% }); %>
