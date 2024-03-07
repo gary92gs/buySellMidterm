@@ -9,34 +9,32 @@ body {
 h2 { /* My Listings (Active) and My Deleted Listings*/
   padding: 30px;
   padding-left: 35px;
+  justify-content: center;
+  display: flex;
 }
 
 .table-container {
-  padding: 20px;
+  padding: 10px 250px;
 }
-
-
-.table tbody .item-image img {
-  vertical-align: middle !important;
-}
-
 
 .item-image {
   width: 250px; /* Fixed width for the container */
   height: 250px; /* Fixed height for the container */
   overflow: hidden; /* Hide any overflow from the container */
-
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
 }
 
-.item-image a img {
+.item-image img {
   max-width: 100%; /* Image's max width within container's width */
   max-height: 100%;
-  object-fit: cover; /* Cover makes the image fill the entire container */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  object-fit: contain; /* Cover makes the image fill the entire container */
 }
 
-
-
-
+.figtree {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
