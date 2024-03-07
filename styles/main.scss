@@ -15,27 +15,50 @@ body {
 }
 
 header {
-  /* Header container that contains our jumbotron (must be called using header) */
+  /* Container for our jumbotron (must be called using header) because it includes the padding surrounding the jumbotron*/
   width: 100%;
   padding: 20px;
   margin: 0;
   padding-top: 100px;
 }
 
-main {
+.jumbotron {
+  /* The jumbotron that has our Welcome greeting, logo, etc.*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+.content { /* This allows our Welcome greeting and logo to appear side-by-side */
+  flex: 1;
+}
+
+.deal-dock-big-logo { /* Container for our image with set width/height */
+  width: 200px;
+  height: 200px;
+  border-radius: 5%;
+  margin-right: 100px;
+}
+
+.deal-dock-big-logo img { /* Deal Dock Logo inside jumbotron to fit within its container*/
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+main { /* This allows us to have our 4 listings to be in a row*/
   display: flex;
   flex-direction: row;
   margin: auto;
 }
 
 .box {
-  /* This allows us to have our listings in a row*/
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-.item {
+.item { /* Container for each item listing*/
   display: flex;
   background-color: rgb(255, 255, 255);
   padding: 1em;
@@ -61,7 +84,7 @@ main {
   font-size: 1.75rem;
 }
 
-.items-heart-icon:hover {
+.items-heart-icon:hover { /* When hovering over heart icon; mouse -> pointer &turn red */
   cursor: pointer;
   color:red;
 }
@@ -80,6 +103,6 @@ main {
 }
 
 #description {
-  height: 45px; /* Height of the description box */
-  overflow: scroll;
+  height: 45px; /* Max height of the description box */
+  overflow: scroll; /* Characters that exceed the height will be hidden and the scroll feature is implemented. */
 }
