@@ -11,9 +11,6 @@ $(document).ready(function() {
       method: 'DELETE',
       data: { listingId },
       success: function(response) {
-        console.log('Listing deleted successfully');
-        //find the HTML element with the ID 'item-'
-        $('#item-' + listingId).remove();
         //redirect the user's browser to the '/favourites' page
         window.location.href = '/favourites';
       },

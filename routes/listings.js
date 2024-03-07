@@ -107,6 +107,26 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.delete('/:id', (req, res) => {
+  //check if user is logged in (only logged-in/registered users can post ads)
+  if (!req.cookies.userId) {
+    return res.send('You must be logged in to delete ads');
+  }
+  //need to grab listings.id to pass into delete query
+  const listingId = req.body.listingId;
+  //query the database to update listing status (toggle status to delete/repost listing)
+  return dblistings
+    .toggleDeleteListing(listingId)
+    .then(() => {
+      console.log('redirecting')
+      return res.status(200);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+});
+
 //POST/CREATE NEW LISTING
 router.post('/', upload.array('listingImages'), (req, res) => {
   //check if user is logged in (only logged-in/registered users can post ads)

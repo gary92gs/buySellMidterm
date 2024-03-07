@@ -59,7 +59,7 @@
       <tbody>
         <!-- Responsive Template -->
         <% usersActiveListings.forEach(listing => { %>
-          <tr data-listing-id="<%= listing.id %>">
+          <tr class="listing-entry" data-listing-id="<%= listing.id %>">
             <td class="item-image">
               <a href="/listings/<%= listing.id %>">
                 <img src="<%= listing.image_path %>" alt="<%= listing.title %>">
@@ -67,7 +67,7 @@
             </td>
             <td class="item-title"><%= listing.title %></td>
             <td class="price"><%= '$' + listing.price_cents/100 + '.00' %></td>
-            <td class="delete-item"><button type="button" class="btn btn-outline-danger">Delete</button></td>
+            <td class="delete-item"><button type="button" class="btn btn-outline-danger toggle-listing-status">Delete</button></td>
           </tr>
         <% }); %>
       </tbody>
@@ -90,16 +90,15 @@
       <tbody>
         <!-- Responsive Template -->
         <% usersInactiveListings.forEach(listing => { %>
-          <tr data-listing-id="<%= listing.id %>">
+          <tr class="listing-entry" data-listing-id="<%= listing.id %>">
             <td class="item-image">
               <a href="/listings/<%= listing.id %>">
                 <img src="<%= listing.image_path %>" alt="<%= listing.title %>">
               </a>
             </td>
-            <td class="item-id"><%= listing.id %></td>
             <td class="item-title"><%= listing.title %></td>
             <td class="price"><%= '$' + listing.price_cents/100 + '.00' %></td>
-            <td class="activate-listing"><button type="button" class="btn btn-outline-success my-2 my-sm-0">Repost</button></td>
+            <td class="repost-item"><button type="button" class="btn btn-outline-success my-2 my-sm-0 toggle-listing-status">Repost</button></td>
           </tr>
         <% }); %>
       </tbody>

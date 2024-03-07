@@ -144,9 +144,23 @@ const getListing = (listingId) => {
     });
 };
 
-const deleteListing = (listingId) => {
-  //search db listings table by listing_id
-  //update status to False
+//soft deletes listing or activates it (flips boolean status value)
+const toggleDeleteListing = (listingId) => {
+  //NOT status, flips the boolean value true -> false and false -> true
+  const craftedQuery = `
+    UPDATE listings
+    SET status = NOT status
+    WHERE id = $1;
+  `;
+
+  return db
+    .query(craftedQuery, [listingId])
+    .then(() => {
+      return Promise.resolve();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 module.exports = {
@@ -154,4 +168,5 @@ module.exports = {
   browseListings,
   getListing,
   postNewListing,
+  toggleDeleteListing,
 };
