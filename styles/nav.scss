@@ -14,7 +14,7 @@ nav {
 .dropdown-menu {
   position: absolute;
   left: auto; /* This ensures dropdown does not extend beyond screen */
-  right: 0;
+  right: 0; /* This ensures dropdown does not extend beyond screen */
   min-width: 10rem;
 }
 
@@ -22,16 +22,33 @@ nav {
   overflow: visible; /* Ensures dropdown menu to be fully visible outside the navbar */
 }
 .heart-icon {
-  // Heart button in nav-bar
+  /* Heart icon in nav */
   font-size: 1.5rem;
   color: white;
 }
 
 .heart-icon:hover {
-  cursor: pointer;
   color:red;
 }
 
+
+.my-listings {
+  /* My Listings Icon in nav */
+  color:white;
+  font-size: 1.25rem;
+}
+.my-listings:hover {
+  color:rgb(9, 222, 255);
+}
+
+.logout-icon {
+  /* Heart icon in nav */
+  font-size: 1.5rem;
+  color: white;
+}
+.logout-icon:hover {
+  color:red;
+}
 #setLocationForm {
   margin-right: 10px; /* Adds spacing between 'Set Location' button and 'Min ($)' input field */
 }
@@ -49,3 +66,4 @@ nav {
 #userSearchForm { /* Adds spacing between 'Search' button and 'Heart' icon aka ;'Favourites' button */
   margin-right: 8px;
 }
+

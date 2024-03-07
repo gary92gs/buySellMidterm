@@ -1,4 +1,7 @@
-<head><link rel="stylesheet" href="/styles/nav.css" /></head>
+<head>
+  <link rel="stylesheet" href="/styles/nav.css" />
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</head>
 
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <a href="/" class="navbar-brand">
@@ -32,13 +35,13 @@
 
     <!-- Price Filter -->
     <form id="setPriceRangeForm" class="form-inline my-2 my-lg-0" action="/listings" method="GET">
-      <input class="form-control mr-sm-2" type="text" placeholder="Min ($)" value="<%= ((filterObj.priceCentsMin/100) ? filterObj.priceCentsMin/100 : '') %>" aria-label="Search" name="priceMin" size="8">
-      <input class="form-control mr-sm-2" type="text" placeholder="Max ($)" value="<%= ((filterObj.priceCentsMax/100) ? filterObj.priceCentsMax/100 : '') %>" aria-label="Search" name="priceMax" size="8">
+      <input class="form-control mr-sm-2" type="text" placeholder="Min ($)" value="<%= ((filterObj.priceCentsMin/100) ? filterObj.priceCentsMin/100 : '') %>" aria-label="Search" name="priceMin" size="6">
+      <input class="form-control mr-sm-2" type="text" placeholder="Max ($)" value="<%= ((filterObj.priceCentsMax/100) ? filterObj.priceCentsMax/100 : '') %>" aria-label="Search" name="priceMax" size="6">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Set Price Range</button>
     </form>
 
     <form id="userSearchForm" class="form-inline my-2 my-lg-0" action="/listings" method="GET">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" value="<%= filterObj.userSearch %>" aria-label="Search" name="userSearch" size="15">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" value="<%= filterObj.userSearch %>" aria-label="Search" name="userSearch" size="12">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
 
@@ -47,11 +50,23 @@
       <i class="fa-regular fa-heart nav-item heart-icon"></i>
     </a>
 
+<!--My Listings Icon -->
+<a class="py-2 mx-2" href="/listings/Mylistings">
+  <i class="fa-solid fa-sheet-plastic nav-item my-listings"></i>
+</a>
+
+<!--Logout Icon -->
+<a class="py-2 mx-2" href="/logout">
+  <i class="fa-solid fa-right-from-bracket logout-icon"></i>
+</a>
 
 
+
+
+<!-- ------------------------------------------------------------->
     <ul class="navbar-nav">
     <li class="nav-item dropdown active">
-      <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
+      <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
 
       <div class="dropdown-menu" aria-labelledby="dropdown01">
         <button class="dropdown-item">All Categories</button>

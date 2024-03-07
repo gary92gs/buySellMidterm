@@ -3,38 +3,40 @@ tr {
 }
 
 body {
-  margin-top: 50px;
+  margin-top: 60px;
 }
 
-.favourites-header {
-  padding-top: 30px;
+h2 { /* My Listings (Active) and My Deleted Listings*/
+  padding: 30px;
   padding-left: 35px;
 }
-
 
 .table-container {
   padding: 20px;
 }
 
-.labels {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  justify-content: space-around;
+
+.table tbody .item-image img {
+  vertical-align: middle !important;
 }
 
-td {
-  vertical-align: middle;
-}
 
 .item-image {
   width: 250px; /* Fixed width for the container */
   height: 250px; /* Fixed height for the container */
   overflow: hidden; /* Hide any overflow from the container */
+
 }
 
-.item-image img {
+.item-image a img {
   max-width: 100%; /* Image's max width within container's width */
   max-height: 100%;
   object-fit: cover; /* Cover makes the image fill the entire container */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+
+
+
