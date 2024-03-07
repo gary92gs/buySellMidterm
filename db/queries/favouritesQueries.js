@@ -1,6 +1,5 @@
 const db = require('../connection');
 
-
 const browseFavourites = (userId) => {
   return db
   .query(`
@@ -26,8 +25,36 @@ const browseFavourites = (userId) => {
 };
 
 const addFavourite = (userId, listingId) => {
-  //insert new entry into favourites table
-}
+  if (!listingId) {
+    return Promise.reject(new Error('Invalid listing ID'));
+  }
+
+  // Check if the listing is already in the user's favorites
+  return db
+    .query(`
+      SELECT COUNT(*) AS count
+      FROM favourites
+      WHERE user_id = $1 AND listing_id = $2
+    `, [userId, listingId])
+    .then((result) => {
+      const { count } = result.rows[0];
+      if (count > 0) {
+        return Promise.reject(new Error('Listing already in favorites'));
+      }
+
+      // If the listing is not already a favorite, add it to the favorites list
+      return db.query(`
+        INSERT INTO favourites (user_id, listing_id) VALUES ($1, $2)
+      `, [userId, listingId]);
+    })
+    .then((result) => {
+      console.log('Favourite added successfully', result);
+    })
+    .catch((error) => {
+      console.error('Error adding favourite:', error);
+      return Promise.reject(error);
+    });
+};
 
 const removeFavourite = (listingId) => {
   return db
@@ -49,5 +76,6 @@ const removeFavourite = (listingId) => {
 
 module.exports = { 
   browseFavourites,
-  removeFavourite
+  removeFavourite,
+  addFavourite,
  }
