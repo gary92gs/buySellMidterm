@@ -112,14 +112,13 @@ router.delete('/:id', (req, res) => {
   if (!req.cookies.userId) {
     return res.send('You must be logged in to delete ads');
   }
-  //need to grab listings.id to pass into delete query
-  const listingId = req.body.listingId;
+  //grab listings.id to pass into delete query
+  const listingId = req.params.id;
   //query the database to update listing status (toggle status to delete/repost listing)
   return dblistings
     .toggleDeleteListing(listingId)
     .then(() => {
-      console.log('redirecting')
-      return res.status(200);
+      return res.status(200).send("You're Listings Have Been Updated");
     })
     .catch((err) => {
       console.log(err);
