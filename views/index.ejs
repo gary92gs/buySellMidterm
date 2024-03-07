@@ -59,7 +59,9 @@
           <p><%= listing.description %></p>
           <p class="listing-buttons">
             <a href="/listings/<%= listing.id %>" class="btn btn-primary" role="button">Purchase</a>
-            <i class="fa-regular fa-heart items-heart-icon"></i>
+            <button class="btn add-to-favorites" data-listing-id="<%= listing.id %>">
+              <i class="fa-regular fa-heart items-heart-icon"></i>
+            </button>
           </p>
         </div>
       </div>
