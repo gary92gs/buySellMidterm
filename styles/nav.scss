@@ -33,11 +33,19 @@ nav {
 }
 
 #setLocationForm {
-  margin-right: 10px; /* Adds spacing between 'Set Location' button and 'Search' input field */
+  margin-right: 10px; /* Adds spacing between 'Set Location' button and 'Min ($)' input field */
 }
 
 .deal-dock-logo {
   width: 50px;
   height: 50px;
   border-radius: 5%;
+}
+
+#setPriceRangeForm { /* Adds spacing between 'Set Price Range' button and 'Search' input field */
+  margin-right: 10px;
+}
+
+#userSearchForm { /* Adds spacing between 'Search' button and 'Heart' icon aka ;'Favourites' button */
+  margin-right: 8px;
 }
