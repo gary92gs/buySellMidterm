@@ -40,10 +40,10 @@
     <div class="jumbotron">
 
       <div class="content">
-          <h1>Welcome to Buy & Sell!</h1>
+          <h1>Welcome to Deal Dock!</h1>
           <p>A platform that connects buyers and sellers.</p>
           <p>Members can post items for sale, and buy items from our partnered sellers.</p>
-          <p><a class="btn btn-primary btn-lg" href="#" role="button">Sign In</a></p>
+          <p><a class="btn btn-primary btn-lg" href="/login/1" role="button">Sign In</a></p>
       </div>
 
       <div class="deal-dock-big-logo">
@@ -80,10 +80,15 @@
 </div> <!--BOX -->
 
 <div class="page-selector">
-  <button class="previous-page"><</button>
-  <span class="current-page"><%= filterObj.currentPage %></span>
-  <button class="next-page">></button>
+
+  <div class="previous-page"><i class="fa-solid fa-arrow-left"></i></div>
+
+  <div class="current-page"><%= filterObj.currentPage %></div>
+
+  <div class="next-page"><i class="fa-solid fa-arrow-right"></i></div>
+
 </div>
+
 
 
 <hr class="hr hr-blurry" /> <!--Horizontal Spacing -->

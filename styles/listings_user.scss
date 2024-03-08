@@ -1,5 +1,8 @@
-tr {
-  background-color: white;
+.figtree {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 
 body {
@@ -7,15 +10,19 @@ body {
 }
 
 h2 { /* My Listings (Active) and My Deleted Listings*/
-  padding: 30px;
-  padding-left: 35px;
+  margin-top: 50px;
   justify-content: center;
   display: flex;
 }
 
 .table-container {
-  padding: 10px 250px;
-}
+    background-color: white;
+    max-width: 800px;
+    justify-content: center;
+    display: flex;
+    margin: auto;
+    padding:10px;
+  }
 
 .item-image {
   width: 250px; /* Fixed width for the container */
@@ -32,9 +39,3 @@ h2 { /* My Listings (Active) and My Deleted Listings*/
   object-fit: contain; /* Cover makes the image fill the entire container */
 }
 
-.figtree {
-  font-family: "Figtree", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-}
