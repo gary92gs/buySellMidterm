@@ -39,3 +39,13 @@ h2 { /* My Listings (Active) and My Deleted Listings*/
   object-fit: contain; /* Cover makes the image fill the entire container */
 }
 
+/* For screens smaller than 768px, display smaller image */
+@media screen and (max-width: 768px) {
+  .item-image {
+    width: 125px; /* Fixed width for the container */
+    height: 125px;
+  }
+  .table-container {
+    max-width: 600px;
+  }
+}

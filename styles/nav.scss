@@ -11,6 +11,8 @@ nav {
   right:0;
 }
 
+
+
 .dropdown-menu { /* Categories */
   position: absolute;
   left: auto; /* This ensures dropdown does not extend beyond screen */
@@ -66,10 +68,16 @@ nav {
   margin-right: 8px;
 }
 
+@media only screen and (max-width: 1300px) { /* Shrinks the input field font sizes when screen is minimized */
+  nav form *{
+    font-size: 0.8em!important;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   /* Small devices */
   nav {
-    padding: 1.5em; /* Smaller padding */
+    padding: 1em; /* Smaller padding */
   }
 
   .deal-dock-logo {
@@ -88,14 +96,15 @@ nav {
     right: auto; /* Reset dropdown positioning for smaller devices */
     left: 0;
   }
-}
-
-input .location-filter {
-  width: 10px;
-}
-
-
-/* For screens smaller than 768px, display 3 listings in a row */
-@media screen and (max-width: 768px) {
-
+  .dropdown-menu { /* Categories */
+    position: absolute;
+    left: auto; /* This ensures dropdown does not extend beyond screen */
+    right: 0; /* This ensures dropdown does not extend beyond screen */
+    min-width: 10rem;
+    max-height: 45px;
+    overflow: scroll;
+  }
+  nav form *{
+    font-size: 0.8em!important;
+  }
 }
