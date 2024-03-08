@@ -39,8 +39,6 @@ $(document).ready(function() {
         },
         error: function(xhr, status, error) {
           console.error('Error adding listing to favorites:', error);
-          // client side alert if they have the item already in their favourites
-          alert('Error removing listing from favorites, you may have removed this already.');
         }
       });
     } else if ($icon.hasClass('fa-regular')) { // if listing is not currently favourited
@@ -56,8 +54,6 @@ $(document).ready(function() {
         },
         error: function(xhr, status, error) {
           console.error('Error adding listing to favorites:', error);
-          // client side alert if they have the item already in their favourites
-          alert('Error adding listing to favorites, you may have added this already.');
         }
       });
     }

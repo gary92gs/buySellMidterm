@@ -35,6 +35,7 @@ router.get('/', (req, res) => {
       .browseFavourites(userId)
       .then(favouriteListingsArr => Promise.resolve(favouriteListingsArr.map(favourite => favourite.id))),
   ])
+    //receives an array with 2 'result.rows', which are renamed to listings and favouritesIds
     .then(([listings, favouritesIds]) => {
       return res.render('index', { listings, favouritesIds, filterObj });
     })
@@ -58,7 +59,7 @@ router.get('/new', (req, res) => {
     province: req.cookies.province,
     country: req.cookies.country,
   };
-  res.render('listings_new', { filterObj });
+  return res.render('listings_new', { filterObj });
 });
 
 router.get('/myListings', (req, res) => {
@@ -81,9 +82,9 @@ router.get('/myListings', (req, res) => {
   return dblistings
     .getListingsByUserId(userId)
     .then((usersListingsArray) => {
-      const usersActiveListings = usersListingsArray.filter(listing => listing.status); //returns listings with active status?? (need to test)
-      const usersInactiveListings = usersListingsArray.filter(listing => !listing.status); //returns listings with inactive status?? (nned to test)
-      res.render('listings_user', { usersActiveListings, usersInactiveListings, filterObj });
+      const usersActiveListings = usersListingsArray.filter(listing => listing.status); //returns listings with active status
+      const usersInactiveListings = usersListingsArray.filter(listing => !listing.status); //returns listings with inactive status
+      return res.render('listings_user', { usersActiveListings, usersInactiveListings, filterObj });
     })
     .catch((err) => {
       console.log(err);
@@ -116,24 +117,13 @@ router.get('/:id', (req, res) => {
       .browseFavourites(userId)
       .then(favouriteListingsArr => Promise.resolve(favouriteListingsArr.map(favourite => favourite.id))),
   ])
+    //receives 2 arrays of 'result.rows', which are grabbed and named as listingArray, and favouritesIds
     .then(([listingArray, favouritesIds]) => {
       return res.render('listings_show', { listingArray, favouritesIds, filterObj });
     })
     .catch((err) => {
       console.log(err);
     });
-
-
-
-  // return dblistings
-  //   .getListing(requestedId)
-  //   .then((listingArray) => {
-  //     console.log('listingArray', listingArray);
-  //     res.render('listings_show', { listingArray, filterObj });
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
 });
 
 router.delete('/:id', (req, res) => {
