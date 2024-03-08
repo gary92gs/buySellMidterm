@@ -8,10 +8,12 @@ const upload = multer({ dest: 'public/ad_images_uploaded' });
 
 const dblistings = require('./../db/queries/listingQueries');
 const dbImages = require('./../db/queries/listingImagesQueries');
+const dbFavourites = require('./../db/queries/favouritesQueries');
 
 //BROWSE/RETRIEVE MANY LISTINGS BASED ON USER-SPECIFIED SEARCH PARAMETERS
 router.get('/', (req, res) => {
-  console.log('req.cookies', req.cookies);
+  //grab user Id for favourites query (undefined does not error out)
+  const userId = req.cookies.userId;
   //grab search parameters from cookies (will be passed into browseListings query)
   const filterObj = {
     priceCentsMin: Number(req.cookies.priceMin + '00'),
@@ -23,12 +25,18 @@ router.get('/', (req, res) => {
     country: req.cookies.country,
     currentPage: req.cookies.currentPage || 1,
   };
-  console.log('filterObj', filterObj);
   //query the database and render page based on query-results
-  dblistings
-    .browseListings(filterObj)
-    .then((listings) => {
-      return res.render('index', { listings, filterObj });
+  return Promise.all([
+    dblistings
+      .browseListings(filterObj)
+      .then(listings => Promise.resolve(listings)),
+    //returns empty array if user is not logged in (ie. cannot have favourites)
+    dbFavourites
+      .browseFavourites(userId)
+      .then(favouriteListingsArr => Promise.resolve(favouriteListingsArr.map(favourite => favourite.id))),
+  ])
+    .then(([listings, favouritesIds]) => {
+      return res.render('index', { listings, favouritesIds, filterObj });
     })
     .catch((err) => {
       console.log(err);
@@ -85,6 +93,8 @@ router.get('/myListings', (req, res) => {
 
 //RETRIEVE INDIVIDUAL LISTING
 router.get('/:id', (req, res) => {
+  //grab userId for favourites query (undefined does not error out)
+  const userId = req.cookies.userId;
   //necessary for banner (it references cookies)
   const filterObj = {
     priceCentsMin: Number(req.cookies.priceMin + '00'),
@@ -97,14 +107,33 @@ router.get('/:id', (req, res) => {
   //grab id of individual listing that user clicked
   const requestedId = parseInt(req.params.id);
   //query the database for info regarding the user-selected listing
-  return dblistings
-    .getListing(requestedId)
-    .then((listingArray) => {
-      res.render('listings_show', { listingArray, filterObj });
+  return Promise.all([
+    dblistings
+      .getListing(requestedId)
+      //returns array to conatin multiple images (many images for 1 listing)
+      .then(listingArray => Promise.resolve(listingArray)),
+    dbFavourites
+      .browseFavourites(userId)
+      .then(favouriteListingsArr => Promise.resolve(favouriteListingsArr.map(favourite => favourite.id))),
+  ])
+    .then(([listingArray, favouritesIds]) => {
+      return res.render('listings_show', { listingArray, favouritesIds, filterObj });
     })
     .catch((err) => {
       console.log(err);
     });
+
+
+
+  // return dblistings
+  //   .getListing(requestedId)
+  //   .then((listingArray) => {
+  //     console.log('listingArray', listingArray);
+  //     res.render('listings_show', { listingArray, filterObj });
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
 });
 
 router.delete('/:id', (req, res) => {
@@ -147,9 +176,7 @@ router.post('/', upload.array('listingImages'), (req, res) => {
     status: true,
   };
   //extract image paths into an array for inserting into
-  console.log('req.files', req.files);
   const imagePathsArray = req.files.map(file => file.path.slice(6));
-  console.log('imagePathsArray', imagePathsArray);
   //query the database to insert into listings, then into
   return dblistings
     .postNewListing(listingObj)

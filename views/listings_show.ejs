@@ -59,7 +59,9 @@
 
             <p class="specific-ad-buttons">
               <a href="mailto:<%= listingArray[0].email %>?subject=Regarding%20<%= listingArray[0].title %>&body=Hi,%20I%20am%20interested%20in%20your%20item.%20Is%20this%20still%20for%20sale%3F" class="btn btn-primary" role="button">Contact Seller</a>
-              <i class="fa-regular fa-heart items-heart-icon"></i>
+              <button class="btn toggle-favorites" data-listing-id="<%= listingArray[0].id %>">
+                <i class="<%= ((favouritesIds.includes(listingArray[0].id)) ? 'fa-solid':'fa-regular') %> fa-heart items-heart-icon"></i>
+              </button>
             </p>
 
           </div>

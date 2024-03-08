@@ -68,8 +68,8 @@
           <p id="description"><%= listing.description %></p>
           <p class="listing-buttons">
             <a href="/listings/<%= listing.id %>" class="btn btn-primary" role="button">Purchase</a>
-            <button class="btn add-to-favorites" data-listing-id="<%= listing.id %>">
-              <i class="fa-regular fa-heart items-heart-icon"></i>
+            <button class="btn toggle-favorites" data-listing-id="<%= listing.id %>">
+              <i class="<%= ((favouritesIds.includes(listing.id)) ? 'fa-solid':'fa-regular') %> fa-heart items-heart-icon"></i>
             </button>
           </p>
         </div>
