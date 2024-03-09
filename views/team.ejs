@@ -27,12 +27,11 @@
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/favourites.css" />
+  <link rel="stylesheet" href="/styles/team.css" />
 
-  <!-- JQuery -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-  <!-- Custom Scripts -->
-  <script defer src="/scripts/app.js"></script>
+
+
 </head>
 
 <body>
@@ -41,25 +40,44 @@
   <%- include('partials/nav-bar') %>
 
  <!---------------------- Header --------------------------->
-<hr class="hr hr-blurry" /> <!--Horizontal Spacing -->
+
+  <hr class="hr hr-blurry" /> <!--Horizontal Spacing -->
   <h2 class="pb-3 mb-4 favourites-header figtree">
     Our Team
   </h2>
 
-  <div class="box">
-
-  
-      <div class="member">
-        <div class="thumbnail">
-          <img src="/puppers/Test.jpg" alt="Test" class="pupper">
-          <div class="caption">
-            <h5 id="team-member">Shad</h5>
-            <p id="GitHub">https://github.com/RiceRak/</p>
+  <div class="team">
+    <div class="row">
+      <div class="col-sm-4 text-center">
+        <div class="member">
+          <div class="thumbnail">
+            <img src="/puppers/chris.png" alt="Chris" class="pupper">
+            <h5 class="team-member">Chris</h5>
+            <a href="https://github.com/cde-as/" class="GitHub">GitHub</a>
           </div>
         </div>
       </div>
-
   
+      <div class="col-sm-4 text-center">
+        <div class="member">
+          <div class="thumbnail">
+            <img src="/puppers/garret.png" alt="Garret" class="pupper">
+            <h5 class="team-member">Garret</h5>
+            <a href="https://github.com/gary92gs" class="GitHub">GitHub</a>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-sm-4 text-center">
+        <div class="member">
+          <div class="thumbnail">
+            <img src="/puppers/Test.jpg" alt="Shad" class="pupper">
+            <h5 class="team-member">Shad</h5>
+            <a href="https://github.com/RiceRak/" class="GitHub">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   
