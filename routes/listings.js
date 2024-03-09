@@ -29,16 +29,16 @@ router.get('/', (req, res) => {
   //query the database and render page based on query-results
   return Promise.all([
     dblistings
-      .browseListings(filterObj)
-      .then(listings => Promise.resolve(listings)),
+    .browseListings(filterObj)
+    .then(listings => Promise.resolve(listings)),
     //returns empty array if user is not logged in (ie. cannot have favourites)
     dbFavourites
-      .browseFavourites(userId)
-      .then(favouriteListingsArr => Promise.resolve(favouriteListingsArr.map(favourite => favourite.id))),
+    .browseFavourites(userId)
+    .then(favouriteListingsArr => Promise.resolve(favouriteListingsArr.map(favourite => favourite.id))),
   ])
   //receives an array with 2 'result.rows', which are renamed to listings and favouritesIds
-    .then(([listings, favouritesIds]) => {
-      return res.render('index', { listings, filterObj, showSearchFilters, favouritesIds, userId });
+  .then(([listings, favouritesIds]) => {
+    return res.render('index', { listings, filterObj, showSearchFilters, favouritesIds, userId });
     })
     .catch((err) => {
       console.log(err);

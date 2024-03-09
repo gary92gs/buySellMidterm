@@ -5,7 +5,7 @@ router.get('/', (req, res) => {
   // clear cookie
   res.clearCookie('userId');
   // reload listings page
-  res.redirect('/listings')
+  res.redirect('/listings');
 });
 
 module.exports = router;

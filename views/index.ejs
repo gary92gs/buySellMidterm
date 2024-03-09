@@ -40,6 +40,9 @@
           <p>A platform that connects buyers and sellers.</p>
           <p>Members can post items for sale, and buy items from our partnered sellers.</p>
 
+          <% if (!userId) { %>
+            <a id="post-ad-btn" class="btn btn-outline-info my-2 my-sm-0" href="/login/1">Sign In</a>
+          <% } %>
           <% if (userId) { %>
             <a id="post-ad-btn" class="btn btn-outline-info my-2 my-sm-0" href="/listings/new">Post Ad</a>
           <% } %>
