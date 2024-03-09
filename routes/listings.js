@@ -23,12 +23,15 @@ router.get('/', (req, res) => {
     country: req.cookies.country,
     currentPage: req.cookies.currentPage || 1,
   };
+
+  const showSearchFilters = true;
+
   console.log('filterObj', filterObj);
   //query the database and render page based on query-results
   dblistings
     .browseListings(filterObj)
     .then((listings) => {
-      return res.render('index', { listings, filterObj });
+      return res.render('index', { listings, filterObj, showSearchFilters });
     })
     .catch((err) => {
       console.log(err);
@@ -50,7 +53,10 @@ router.get('/new', (req, res) => {
     province: req.cookies.province,
     country: req.cookies.country,
   };
-  res.render('listings_new', { filterObj });
+
+  const showSearchFilters = true;
+
+  res.render('listings_new', { filterObj, showSearchFilters });
 });
 
 router.get('/myListings', (req, res) => {
@@ -69,13 +75,14 @@ router.get('/myListings', (req, res) => {
   };
   //retrieve userId from cookie
   const userId = req.cookies.userId;
+  const showSearchFilters = true;
 
   return dblistings
     .getListingsByUserId(userId)
     .then((usersListingsArray) => {
       const usersActiveListings = usersListingsArray.filter(listing => listing.status); //returns listings with active status?? (need to test)
       const usersInactiveListings = usersListingsArray.filter(listing => !listing.status); //returns listings with inactive status?? (nned to test)
-      res.render('listings_user', { usersActiveListings, usersInactiveListings, filterObj });
+      res.render('listings_user', { usersActiveListings, usersInactiveListings, filterObj, showSearchFilters });
     })
     .catch((err) => {
       console.log(err);
@@ -94,13 +101,15 @@ router.get('/:id', (req, res) => {
     province: req.cookies.province,
     country: req.cookies.country,
   };
+
+  const showSearchFilters = true;
   //grab id of individual listing that user clicked
   const requestedId = parseInt(req.params.id);
   //query the database for info regarding the user-selected listing
   return dblistings
     .getListing(requestedId)
     .then((listingArray) => {
-      res.render('listings_show', { listingArray, filterObj });
+      res.render('listings_show', { listingArray, filterObj, showSearchFilters });
     })
     .catch((err) => {
       console.log(err);
