@@ -39,6 +39,7 @@ const loginRoutes = require('./routes/login');
 const listingsRoutes = require('./routes/listings');
 const favouritesRoutes = require('./routes/favourites');
 const teamRoutes = require('./routes/team')
+const logoutRoutes = require('./routes/logout')
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -48,6 +49,7 @@ app.use('/login', loginRoutes);
 app.use('/listings', listingsRoutes);
 app.use('/favourites', favouritesRoutes);
 app.use('/team', teamRoutes);
+app.use('/logout', logoutRoutes)
 
 // Home page
 // Warning: avoid creating more routes in this file!
