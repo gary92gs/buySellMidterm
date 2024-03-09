@@ -49,7 +49,7 @@ const browseListings = (browseFilterObj) => {
       //ensure userSearch is applied to the listings title column and it is a partial string search (ie. non-exact match)
       if (searchParameter === 'userSearch') {
         queryEscapeArray.push(`%${browseFilterObj[searchParameter]}%`);
-        whereCraftingArray.push(`title LIKE $${queryEscapeArray.length} OR description LIKE $${queryEscapeArray.length}`);
+        whereCraftingArray.push(`(title LIKE $${queryEscapeArray.length} OR description LIKE $${queryEscapeArray.length})`);
         continue;
       }
       //ensure currentPage is applied to the id
@@ -77,10 +77,15 @@ const browseListings = (browseFilterObj) => {
   }
   //if WHERE statements were generated, then implant it into the queryCraftingArray. Otherwise, skip it.
   if (whereCraftingArray.length) {
-    queryCraftingArray[1] = 'WHERE ' + whereCraftingArray.join(' AND ');
+    queryCraftingArray[1] = 'WHERE listings.status = True AND ' + whereCraftingArray.join(' AND ');
+  } else {
+    queryCraftingArray[1] = `WHERE listings.status = True`;
   }
+
   //consolidate queryCraftingArray into a finalized query string
   const craftedQuery = queryCraftingArray.filter(element => element !== '').join(' ') + ';';
+  console.log(craftedQuery)
+
   //query database and return data to web server
   return db
     .query(craftedQuery, queryEscapeArray)
