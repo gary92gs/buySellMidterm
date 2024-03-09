@@ -12,8 +12,9 @@ router.get('/', (req, res) => {
     country: req.cookies.country,
   };
 
+  const showSearchFilters = false;
 
-  res.render('team', { filterObj });
+  res.render('team', { filterObj, showSearchFilters });
 });
 
 module.exports = router;
