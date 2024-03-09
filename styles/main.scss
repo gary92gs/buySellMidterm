@@ -14,7 +14,6 @@ body {
 }
 
 header {
-  /* Container for our jumbotron (must be called using header) because it includes the padding surrounding the jumbotron*/
   width: 100%;
   padding: 20px;
   margin: 0;
@@ -22,30 +21,28 @@ header {
 }
 
 .jumbotron {
-  /* The jumbotron that has our Welcome greeting, logo, etc.*/
   display: flex;
   height: 600px;
   justify-content: center;
   align-items: center;
   background-color: white;
 }
-.content { /* Allows our 'Welcome' greeting and logo to appear side-by-side */
+.content {
   flex: 1;
 }
 
-.deal-dock-big-logo { /* Container for our image with set width/height */
+.deal-dock-big-logo {
   width: 225px;
   height: 225px;
   border-radius: 5%;
 
 }
 
-.deal-dock-big-logo img { /* Deal Dock Logo inside jumbotron to fit within its container*/
+.deal-dock-big-logo img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
-//----------------------------------------
 
 .jumbo-carousel {
   width: 75%;
