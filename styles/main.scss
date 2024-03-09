@@ -25,6 +25,7 @@ header {
 .jumbotron {
   /* The jumbotron that has our Welcome greeting, logo, etc.*/
   display: flex;
+  height: 600px;
   justify-content: center;
   align-items: center;
   background-color: white;
@@ -45,7 +46,38 @@ header {
   height: 100%;
   object-fit: contain;
 }
+//----------------------------------------
 
+.jumbo-carousel {
+  width: 75%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-images {
+  display: flex;
+  height: 100%;
+  transition: transform 1s ease;
+}
+
+.carousel-image {
+  flex: 0 0 100%;
+  height: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.carousel-image img {
+  height: 100%;
+  max-width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+//----------------------------------------
 main { /* This allows us to have our 4 listings to be in a row*/
   display: flex;
   flex-direction: row;
@@ -106,3 +138,5 @@ main { /* This allows us to have our 4 listings to be in a row*/
   height: 45px; /* Max height of the description box */
   overflow: scroll; /* Characters that exceed the height will be hidden and the scroll feature is implemented. */
 }
+
+

@@ -27,6 +27,7 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script defer src="/scripts/app.js"></script>
   <script defer src="/scripts/clientSearchParams.js"></script>
+  <script defer src="/scripts/jumbotron.js"></script>
 </head>
 
 <body>
@@ -40,15 +41,25 @@
     <div class="jumbotron">
 
       <div class="content">
+        <div class="deal-dock-big-logo">
+            <img src="/website_images/logo_deal_dock.png" alt="Deal Dock Logo" class="deal-dock-big-logo">
+        </div>
           <h1>Welcome to Buy & Sell!</h1>
           <p>A platform that connects buyers and sellers.</p>
           <p>Members can post items for sale, and buy items from our partnered sellers.</p>
           <p><a class="btn btn-primary btn-lg" href="#" role="button">Sign In</a></p>
       </div>
 
-      <div class="deal-dock-big-logo">
-          <img src="/website_images/logo_deal_dock.png" alt="Deal Dock Logo" class="deal-dock-big-logo">
+      <div class="jumbo-carousel">
+        <div class="carousel-images">
+          <% listings.forEach(listing =>{ %>
+            <a class="carousel-image" href="/listings/<%= listing.id %>">
+              <img src="<%= listing.image_path %>" alt="<%= listing.title %>">
+            </a>
+          <% }); %>
+        </div>
       </div>
+
 
     </div>
   </header>
