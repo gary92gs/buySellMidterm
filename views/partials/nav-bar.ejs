@@ -1,45 +1,79 @@
-<head>
-  <link rel="stylesheet" href="/styles/nav.css" />
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-</head>
+<link rel="stylesheet" href="/styles/nav.css" />
+<nav class="navbar navbar-dark navbar-expand-xl fixed-top bg-dark">
 
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <!-- Deal Dock Logo on top left-hand side-->
   <a href="/" class="navbar-brand">
-    <!-- Deal Dock Logo on top left-hand side of nav -->
     <img src="/website_images/logo_deal_dock.png" alt="Deal Dock Logo" class="deal-dock-logo">
   </a>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
+
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a id="post-ad-btn" class="btn btn-outline-info my-2 my-sm-0" href="/listings/new">Post Ad</a>
+      <ul class="navbar-nav mr-auto my-lg-2 my-sm-2">
+      <!-- NOTE: the class my-lg-4 my-sm-2 is what gives it a margin when the nav is collapsed for smaller devices, also found in 'Set Location', 'Set $' and 'Search' forms-->
+        <li class="nav-item">
+          <a id="post-ad-btn" class="btn btn-outline-info my-2 my-sm-0" href="/listings/new">Post Ad</a>
+        </li>
+      </ul>
+
+<!-- Condition to show these search params in the nav bar, includes search filter forms-->
+<% if (showSearchFilters) { %>
+
+    <!-- Location Filter -->
+    <form id="setLocationForm" class="form-inline my-lg-2 my-sm-2" action="/listings" method="GET">
+
+
+        <input class="form-control mr-sm-2 location-filter" type="text" placeholder="City" value="<%= filterObj.city %>" aria-label="Search" name="city" size="7">
+
+        <input class="form-control mr-sm-2 location-filter" type="text" placeholder="Province" value="<%= filterObj.province %>" aria-label="Search" name="province" size="3">
+
+        <input class="form-control mr-sm-2 location-filter" type="text" placeholder="Country" value="<%= filterObj.country %>" aria-label="Search" name="country" size="7" >
+
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Set Location</button>
+
+    </form>
+
+    <!-- Price Filter -->
+    <form id="setPriceRangeForm" class="form-inline my-lg-4 my-sm-2" action="/listings" method="GET">
+
+          <input class="form-control mr-sm-2" type="text" placeholder="Min ($)" value="<%= ((filterObj.priceCentsMin/100) ? filterObj.priceCentsMin/100 : '') %>" aria-label="Search" name="priceMin" size="6">
+          <input class="form-control mr-sm-2" type="text" placeholder="Max ($)" value="<%= ((filterObj.priceCentsMax/100) ? filterObj.priceCentsMax/100 : '') %>" aria-label="Search" name="priceMax" size="6">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Set ($)</button>
+    </form>
+
+    <!-- Search Filter -->
+    <form id="userSearchForm" class="form-inline my-lg-4 my-sm-2" action="/listings" method="GET">
+
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" value="<%= filterObj.userSearch %>" aria-label="Search" name="userSearch" size="12">
+
+      <button class="btn btn-outline-success my-sm-0" type="submit">Search</button>
+
+    </form>
+<% } %>
+<% if (showSearchFilters) { %>
+    <ul class="navbar-nav" id="categories">
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
+
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <button class="dropdown-item">All Categories</button>
+          <button class="dropdown-item">Clothing</button>
+          <button class="dropdown-item">Electronics</button>
+          <button class="dropdown-item">Furniture</button>
+          <button class="dropdown-item">Health and Fitness</button>
+          <button class="dropdown-item">Real Estate</button>
+          <button class="dropdown-item">Sports</button>
+          <button class="dropdown-item">Tools</button>
+          <button class="dropdown-item">Vehicle</button>
+          <button class="dropdown-item">Vehicle Accessories</button>
+        </div>
+
       </li>
     </ul>
-    <!-- condition to show these search params in the nav bar -->
-    <% if (showSearchFilters) { %>
-    <!-- Include search filter forms -->
-    <form id="setLocationForm" class="form-inline my-2 my-lg-0" action="/listings" method="GET">
-      <input class="form-control mr-sm-2" type="text" placeholder="City" value="<%= filterObj.city %>" aria-label="Search" name="city" size="8">
-      <input class="form-control mr-sm-2" type="text" placeholder="Province" value="<%= filterObj.province %>" aria-label="Search" name="province" size="8">
-      <input class="form-control mr-sm-2" type="text" placeholder="Country" value="<%= filterObj.country %>" aria-label="Search" name="country" size="8">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Set Location</button>
-    </form>
-
-    <form id="setPriceRangeForm" class="form-inline my-2 my-lg-0" action="/listings" method="GET">
-      <input class="form-control mr-sm-2" type="text" placeholder="Min ($)" value="<%= ((filterObj.priceCentsMin/100) ? filterObj.priceCentsMin/100 : '') %>" aria-label="Search" name="priceMin" size="6">
-      <input class="form-control mr-sm-2" type="text" placeholder="Max ($)" value="<%= ((filterObj.priceCentsMax/100) ? filterObj.priceCentsMax/100 : '') %>" aria-label="Search" name="priceMax" size="6">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Set Price Range</button>
-    </form>
-
-    <form id="userSearchForm" class="form-inline my-2 my-lg-0" action="/listings" method="GET">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" value="<%= filterObj.userSearch %>" aria-label="Search" name="userSearch" size="12">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-    <% } %>
-
+<% } %>
 <!--Heart Icon -->
     <a class="py-2 mx-2" href="/favourites">
       <i class="fa-regular fa-heart nav-item heart-icon"></i>
@@ -55,28 +89,5 @@
   <i class="fa-solid fa-right-from-bracket logout-icon"></i>
 </a>
 
-
-
-<% if (showSearchFilters) { %>
-<!-- ------------------------------------------------------------->
-    <ul class="navbar-nav">
-    <li class="nav-item dropdown active">
-      <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
-
-      <div class="dropdown-menu" aria-labelledby="dropdown01">
-        <button class="dropdown-item">All Categories</button>
-        <button class="dropdown-item">Clothing</button>
-        <button class="dropdown-item">Electronics</button>
-        <button class="dropdown-item">Furniture</button>
-        <button class="dropdown-item">Health and Fitness</button>
-        <button class="dropdown-item">Real Estate</button>
-        <button class="dropdown-item">Sports</button>
-        <button class="dropdown-item">Tools</button>
-        <button class="dropdown-item">Vehicle</button>
-        <button class="dropdown-item">Vehicle Accessories</button>
-      </div>
-    </li>
-    </ul>
-    <% } %>
   </div>
 </nav>

@@ -8,7 +8,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  //align-items: center; This is what was making our items bundled together
   margin-top: 60px;
   min-height: 100vh;
   background: rgb(179, 213, 241);
@@ -29,15 +28,15 @@ header {
   align-items: center;
   background-color: white;
 }
-.content { /* This allows our Welcome greeting and logo to appear side-by-side */
+.content { /* Allows our 'Welcome' greeting and logo to appear side-by-side */
   flex: 1;
 }
 
 .deal-dock-big-logo { /* Container for our image with set width/height */
-  width: 200px;
-  height: 200px;
+  width: 225px;
+  height: 225px;
   border-radius: 5%;
-  margin-right: 100px;
+
 }
 
 .deal-dock-big-logo img { /* Deal Dock Logo inside jumbotron to fit within its container*/
@@ -68,6 +67,7 @@ main { /* This allows us to have our 4 listings to be in a row*/
   justify-content: space-between;
   position: relative;
   flex-direction: column;
+  border-radius: 2%;
 }
 
 .thumbnail img{
@@ -77,13 +77,9 @@ main { /* This allows us to have our 4 listings to be in a row*/
   object-fit: contain;
 }
 
-#listing-title{
-  margin-top: 10px;
-}
 .items-heart-icon { /* Heart button in listing items */
   font-size: 1.75rem;
 }
-
 .items-heart-icon:hover { /* When hovering over heart icon; mouse -> pointer &turn red */
   cursor: pointer;
   color:red;
@@ -94,15 +90,58 @@ main { /* This allows us to have our 4 listings to be in a row*/
   justify-content: space-between;
   margin-top: auto;
 }
+#listing-title{
+  margin-top: 10px;
+  height: 25px;
+  //overflow: scroll;
+  white-space: nowrap; /* Prevents wrapping */
+  overflow: hidden; /* Hides the overflowing content */
+  text-overflow: ellipsis; /* Displays an ellipsis (...) when text overflows */
+  max-width: 100%;
+}
 
-.page-selector {  /* Centers page-selector and leaves space around arrow buttons and page num. span */
+#description {
+  height: 45px; /* Max height of the description box */
+  overflow: scroll; /* Characters that exceed the height will be hidden and the scroll feature is implemented. */
+}
+
+.previous-page, .next-page, .current-page{
+  //padding:0.5em;
+  font-size: 1.25rem;
+}
+
+.page-selector{ /* Centers page-selector and leaves space around arrow buttons and page num. span */
+  background-color: rgb(255, 255, 255);
+  border-radius: 5%;
+  padding: 0.5em;
   display: flex;
   justify-content: space-between;
   margin: auto;
   width: 75px;
 }
 
-#description {
-  height: 45px; /* Max height of the description box */
-  overflow: scroll; /* Characters that exceed the height will be hidden and the scroll feature is implemented. */
+/* For screens smaller than 768px, display 3 listings in a row */
+@media screen and (max-width: 768px) {
+  main {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .item {
+    width: calc(33.33% - 25px);
+  }
+}
+
+/* For screens smaller than 600px, display 2 listings in a row */
+@media screen and (max-width: 600px) {
+  .item {
+    width: calc(50% - 25px);
+  }
+}
+
+/* For screens smaller than 480px, display 1 listing in a row */
+@media screen and (max-width: 480px) {
+  .item {
+    width: calc(100% - 25px);
+  }
 }
