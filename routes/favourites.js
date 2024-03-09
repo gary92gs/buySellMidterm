@@ -20,11 +20,13 @@ router.get('/', (req, res) => {
     country: req.cookies.country,
   };
 
+  const showSearchFilters = true;
+
   dbFavourites
   .browseFavourites(userId)
   .then((favouriteListingsArr) => {
     console.log(favouriteListingsArr);
-    return res.render('favourites', { filterObj, favouriteListingsArr });
+    return res.render('favourites', { filterObj, favouriteListingsArr, showSearchFilters });
   })
   .catch(error => {
     console.error('Error browsing favourites:', error);

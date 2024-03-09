@@ -25,19 +25,20 @@ router.get('/', (req, res) => {
     country: req.cookies.country,
     currentPage: req.cookies.currentPage || 1,
   };
+  const showSearchFilters = true;
   //query the database and render page based on query-results
   return Promise.all([
     dblistings
-      .browseListings(filterObj)
-      .then(listings => Promise.resolve(listings)),
+    .browseListings(filterObj)
+    .then(listings => Promise.resolve(listings)),
     //returns empty array if user is not logged in (ie. cannot have favourites)
     dbFavourites
-      .browseFavourites(userId)
-      .then(favouriteListingsArr => Promise.resolve(favouriteListingsArr.map(favourite => favourite.id))),
+    .browseFavourites(userId)
+    .then(favouriteListingsArr => Promise.resolve(favouriteListingsArr.map(favourite => favourite.id))),
   ])
-    //receives an array with 2 'result.rows', which are renamed to listings and favouritesIds
-    .then(([listings, favouritesIds]) => {
-      return res.render('index', { listings, favouritesIds, filterObj });
+  //receives an array with 2 'result.rows', which are renamed to listings and favouritesIds
+  .then(([listings, favouritesIds]) => {
+    return res.render('index', { listings, filterObj, showSearchFilters, favouritesIds });
     })
     .catch((err) => {
       console.log(err);
@@ -59,7 +60,10 @@ router.get('/new', (req, res) => {
     province: req.cookies.province,
     country: req.cookies.country,
   };
-  return res.render('listings_new', { filterObj });
+
+  const showSearchFilters = true;
+
+  return res.render('listings_new', { filterObj, showSearchFilters });
 });
 
 router.get('/myListings', (req, res) => {
@@ -78,13 +82,14 @@ router.get('/myListings', (req, res) => {
   };
   //retrieve userId from cookie
   const userId = req.cookies.userId;
+  const showSearchFilters = true;
 
   return dblistings
     .getListingsByUserId(userId)
     .then((usersListingsArray) => {
-      const usersActiveListings = usersListingsArray.filter(listing => listing.status); //returns listings with active status
-      const usersInactiveListings = usersListingsArray.filter(listing => !listing.status); //returns listings with inactive status
-      return res.render('listings_user', { usersActiveListings, usersInactiveListings, filterObj });
+      const usersActiveListings = usersListingsArray.filter(listing => listing.status); //returns listings with active status?? (need to test)
+      const usersInactiveListings = usersListingsArray.filter(listing => !listing.status); //returns listings with inactive status?? (nned to test)
+      return res.render('listings_user', { usersActiveListings, usersInactiveListings, filterObj, showSearchFilters });
     })
     .catch((err) => {
       console.log(err);
@@ -105,6 +110,8 @@ router.get('/:id', (req, res) => {
     province: req.cookies.province,
     country: req.cookies.country,
   };
+
+  const showSearchFilters = true;
   //grab id of individual listing that user clicked
   const requestedId = parseInt(req.params.id);
   //query the database for info regarding the user-selected listing
@@ -119,7 +126,7 @@ router.get('/:id', (req, res) => {
   ])
     //receives 2 arrays of 'result.rows', which are grabbed and named as listingArray, and favouritesIds
     .then(([listingArray, favouritesIds]) => {
-      return res.render('listings_show', { listingArray, favouritesIds, filterObj });
+      return res.render('listings_show', { listingArray, favouritesIds, filterObj, showSearchFilters });
     })
     .catch((err) => {
       console.log(err);
